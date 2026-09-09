@@ -395,6 +395,17 @@
             <button type="button" onclick="PickerMaster.open('temp', 'Temp (°C)', Array.from({length:71},(_,i)=>(35.0 + i*0.1).toFixed(1)), AppState.preSBT.temp)" id="btnTemp" class="input-pb text-left">36.5 °C</button>
           </div>
 
+          <!-- Parámetros Ventilatorios Basales Pre-SBT -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#004FA8]/50 p-2 rounded border border-[#AEE2FA] mb-3">
+          <div>
+            <label class="text-xs text-[#FEB468] font-bold block mb-1">Ps Basal (cmH2O):</label>
+            <button type="button" onclick="PickerMaster.open('psBasal', 'Ps Basal (cmH2O)', Array.from({length:31},(_,i)=>i), AppState.preSBT.psBasal || 10)" id="btnPsBasal" class="input-pb text-left font-mono">10 cmH2O</button>
+          </div>
+          <div>
+            <label class="text-xs text-[#FEB468] font-bold block mb-1">PEEP Basal (cmH2O):</label>
+            <button type="button" onclick="PickerMaster.open('peepBasal', 'PEEP Basal (cmH2O)', Array.from({length:21},(_,i)=>i), AppState.preSBT.peepBasal || 5)" id="btnPEEPBasal" class="input-pb text-left font-mono">5 cmH2O</button>
+          </div>
+          
         </div>
 
         <!-- Indicadores Oxigenatorios Resultantes -->
@@ -664,8 +675,8 @@
       },
       preSBT: {
         dxAct: true, hd: true, vasop: false, esp: true,
-        pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",
-        paFi: null, saFi: null, mitr: "0.0",
+        psBasal: 10, peepBasal: 5,
+        pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",        paFi: null, saFi: null, mitr: "0.0",
         four: null, gcs: null, mrc: null, sofa2: null, expres: null, visage: null,
         isComplete: false
       },
@@ -1320,15 +1331,15 @@
 /* ==========================================================================
        5. CONTROL DE PICKERS VERTICALES Y MASTER THUMB SCROLLER
        ========================================================================== */
-    const PickerMaster = {
+const PickerMaster = {
       activeField: null,
-      activeType: 'pre', // 'patient', 'pre', 'trans'
+      activeType: 'pre', // 'patient_or_pre' o 'trans'
       currentOptions: [],
       selectedIndex: 0,
 
-      open(field, title, options, currentValue) {
+      open(field, title, options, currentValue, type = 'patient_or_pre') {
         this.activeField = field;
-        this.activeType = 'patient_or_pre';
+        this.activeType = type; // Asignación corregida respetando el tipo
         this.currentOptions = options;
         
         document.getElementById('pickerModalTitle').innerText = title.toUpperCase();
@@ -1352,14 +1363,11 @@
       },
 
       openTrans(field, title, options) {
-        this.activeField = field;
-        this.activeType = 'trans';
-        this.currentOptions = options;
-
         const row = AppState.transSBT.rows[AppState.transSBT.activeIndex];
         const curVal = row ? row[field] : options[0];
 
-        this.open(field, title, options, curVal);
+        // Llama a open pasando explícitamente el tipo 'trans'
+        this.open(field, title, options, curVal, 'trans');
       },
 
       selectIndex(idx) {
@@ -1491,6 +1499,8 @@
       },
 
       renderPreSBT() {
+        if (document.getElementById('btnPsBasal')) document.getElementById('btnPsBasal').innerText = `${AppState.preSBT.psBasal || 10} cmH2O`;
+        if (document.getElementById('btnPEEPBasal')) document.getElementById('btnPEEPBasal').innerText = `${AppState.preSBT.peepBasal || 5} cmH2O`;
         document.getElementById('btnPH').innerText = AppState.preSBT.pH;
         document.getElementById('btnPaO2').innerText = AppState.preSBT.paO2 ? `${AppState.preSBT.paO2} mmHg` : 'Omitir / SaFi';
         document.getElementById('btnSvcO2').innerText = `${AppState.preSBT.svcO2} %`;
