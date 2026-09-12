@@ -826,6 +826,9 @@
             const parsed = JSON.parse(saved);
             Object.assign(AppState, parsed);
           }
+          // Garantiza inicialización de campos basales si provienen de memoria previa
+          if (!AppState.preSBT.psBasal) AppState.preSBT.psBasal = 10;
+          if (!AppState.preSBT.peepBasal) AppState.preSBT.peepBasal = 5;
         } catch(e) { console.error('Error cargando estado', e); }
       },
 
@@ -1392,13 +1395,14 @@ const PickerMaster = {
             this.propagateForward(AppState.transSBT.activeIndex, this.activeField, val);
           }
         } else {
-          // Asignación en Patient o PreSBT
-          if (AppState.patient.hasOwnProperty(this.activeField)) {
+          // Asignación directa y flexible en Patient o PreSBT
+          if (this.activeField in AppState.patient) {
             AppState.patient[this.activeField] = val;
             if (this.activeField === 'hosp' || this.activeField === 'tet' || this.activeField === 'tqt') {
               AppEngine.updateFolio();
             }
-          } else if (AppState.preSBT.hasOwnProperty(this.activeField)) {
+          } else {
+            // Asigna directamente a PreSBT sin depender de memoria previa
             AppState.preSBT[this.activeField] = val;
           }
         }
