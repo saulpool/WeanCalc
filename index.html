@@ -42,8 +42,8 @@
 
   <style>
     /* Estilos Retro Puritan-Bennett 840 */
-    body {
-      background-color: #3D3F4B;
+    html, body {
+      background-color: #3D3F4B !important;
       color: #FFFFFF;
       font-family: system-ui, -apple-system, sans-serif;
       user-select: none;
@@ -90,12 +90,12 @@
       height: 180px;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
     .picker-container::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+      display: none;
     }
 
     .picker-item {
@@ -128,7 +128,7 @@
 
     /* Transición para Acordeón */
     .accordion-content {
-      max-height: 2000px;
+      max-height: 2500px;
       transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
       overflow: hidden;
     }
@@ -148,7 +148,7 @@
 </head>
 <body class="h-full flex flex-col antialiased">
     
-<!-- BARRA SUPERIOR FIJA (HEADER PB-840) -->
+  <!-- BARRA SUPERIOR FIJA (HEADER PB-840) -->
   <header class="bg-[#004FA8] border-b-2 border-[#AEE2FA] p-3 sticky top-0 z-30 shadow-lg">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       
@@ -194,8 +194,7 @@
   <main class="flex-1 overflow-y-auto p-3 max-w-7xl w-full mx-auto space-y-4 pb-24">
 
     <!-- PASO 1: FICHA DEL PACIENTE (DEMOGRÁFICOS) -->
-    <section id="secStep1" class="bg-[#3D3F4B] border border-[#5D6C87] rounded-lg overflow-hidden shadow-md">
-      <!-- Encabezado Acordeón -->
+    <section id="secStep1" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep1" onclick="DOMWriter.toggleAccordion('step1')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 1</span>
@@ -204,7 +203,6 @@
         <span id="badgeStep1" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">Pendiente</span>
       </div>
 
-      <!-- Contenido Acordeón -->
       <div id="contentStep1" class="accordion-content p-4 space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
           
@@ -266,7 +264,7 @@
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Edad (Años):</label>
-            <button type="button" onclick="PickerMaster.open('edad', 'Edad', Array.from({length:83},(_,i)=>i+18), AppState.patient.edad)" id="btnEdad" class="input-pb text-left">18 Años</button>
+            <input type="number" inputmode="numeric" id="inpEdad" onfocus="this.select()" onchange="AppState.patient.edad=parseFloat(this.value)||18; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="35">
           </div>
 
           <div>
@@ -276,12 +274,12 @@
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Talla (m):</label>
-            <button type="button" onclick="PickerMaster.open('talla', 'Talla (m)', Array.from({length:81},(_,i)=>(1.40 + i*0.01).toFixed(2)), AppState.patient.talla)" id="btnTalla" class="input-pb text-left">1.60 m</button>
+            <input type="number" inputmode="decimal" step="0.01" id="inpTalla" onfocus="this.select()" onchange="AppState.patient.talla=parseFloat(this.value)||1.60; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="1.60">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Peso Actual (kg):</label>
-            <button type="button" onclick="PickerMaster.open('peso', 'Peso (kg)', Array.from({length:351},(_,i)=>(25 + i*0.5).toFixed(1)), AppState.patient.peso)" id="btnPeso" class="input-pb text-left">70.0 kg</button>
+            <input type="number" inputmode="decimal" step="0.5" id="inpPeso" onfocus="this.select()" onchange="AppState.patient.peso=parseFloat(this.value)||70.0; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="70.0">
           </div>
 
           <div>
@@ -296,12 +294,12 @@
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Días Sedación:</label>
-            <button type="button" onclick="PickerMaster.open('dSeda', 'Días Sedación', Array.from({length:91},(_,i)=>i), AppState.patient.dSeda)" id="btnDSeda" class="input-pb text-left">0 días</button>
+            <input type="number" inputmode="numeric" id="inpDSeda" onfocus="this.select()" onchange="AppState.patient.dSeda=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Días BNM:</label>
-            <button type="button" onclick="PickerMaster.open('dBnm', 'Días BNM', Array.from({length:91},(_,i)=>i), AppState.patient.dBnm)" id="btnDBnm" class="input-pb text-left">0 días</button>
+            <input type="number" inputmode="numeric" id="inpDBnm" onfocus="this.select()" onchange="AppState.patient.dBnm=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
           </div>
 
           <div>
@@ -311,7 +309,6 @@
 
         </div>
 
-        <!-- Resultados Antropométricos Calculados Auto -->
         <div class="bg-[#004FA8] p-3 rounded border border-[#AEE2FA] flex flex-wrap justify-around items-center gap-2">
           <div class="text-center">
             <span class="text-[10px] text-[#AEE2FA] uppercase block">IMC Calculado:</span>
@@ -329,8 +326,7 @@
     </section>
 
     <!-- PASO 2: EVALUACIÓN PRE-SBT Y ESCALAS -->
-    <section id="secStep2" class="bg-[#3D3F4B] border border-[#5D6C87] rounded-lg overflow-hidden shadow-md">
-      <!-- Encabezado Acordeón -->
+    <section id="secStep2" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep2" onclick="DOMWriter.toggleAccordion('step2')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 2</span>
@@ -339,11 +335,10 @@
         <span id="badgeStep2" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">Incompleto</span>
       </div>
 
-      <!-- Contenido Acordeón -->
       <div id="contentStep2" class="accordion-content p-4 space-y-4">
         
         <!-- Checkboxes de Seguridad Pre-SBT -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#5D6C87] p-3 rounded border border-[#AEE2FA]">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#3D3F4B] p-3 rounded border border-[#AEE2FA]">
           <label class="flex items-center space-x-2 text-xs cursor-pointer">
             <input type="checkbox" id="chkDxAct" checked onchange="AppState.preSBT.dxAct=this.checked; AppEngine.saveState();" class="w-4 h-4 accent-[#FEB468]">
             <span>Dx Causa Activo?</span>
@@ -362,61 +357,100 @@
           </label>
         </div>
 
-        <!-- Laboratorios Basales y Gasometría -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">pH Gasométrico:</label>
-            <button type="button" onclick="PickerMaster.open('pH', 'pH', Array.from({length:61},(_,i)=>(6.90 + i*0.01).toFixed(2)), AppState.preSBT.pH)" id="btnPH" class="input-pb text-left">7.40</button>
+        <!-- TARJETA DE MECÁNICA VENTILATORIA BASAL PRE-SBT -->
+        <div class="bg-[#004FA8] border border-[#FEB468] rounded-lg p-3 shadow-inner space-y-3">
+          <div class="text-xs font-bold text-[#FEB468] uppercase border-b border-[#AEE2FA] pb-1">
+            Mecánica Pulmonar Basal (Pre-SBT con Soporte Habitual)
           </div>
 
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">PaO2 (mmHg):</label>
-            <button type="button" onclick="PickerMaster.open('paO2', 'PaO2 (mmHg)', ['Omitir / SaFi', ...Array.from({length:261},(_,i)=>i+40)], AppState.preSBT.paO2 || 'Omitir / SaFi')" id="btnPaO2" class="input-pb text-left">Omitir / SaFi</button>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">Ps Basal (cmH2O):</label>
+              <input type="number" inputmode="numeric" id="inpPsBasal" onfocus="this.select()" onchange="AppState.preSBT.psBasal=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="10">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">PEEP Basal (cmH2O):</label>
+              <input type="number" inputmode="numeric" id="inpPEEPBasal" onfocus="this.select()" onchange="AppState.preSBT.peepBasal=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="5">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">Ppico Basal (cmH2O):</label>
+              <input type="number" inputmode="numeric" id="inpPpicoBasal" onfocus="this.select()" onchange="AppState.preSBT.pPico=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="18">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">FiO2 Basal (%):</label>
+              <input type="number" inputmode="numeric" id="inpFiO2Basal" onfocus="this.select()" onchange="AppState.preSBT.fiO2=parseFloat(this.value)||21; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="30">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">RResp Basal (rpm):</label>
+              <input type="number" inputmode="numeric" id="inpRRespBasal" onfocus="this.select()" onchange="AppState.preSBT.rResp=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="16">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">VTesp Basal (mL):</label>
+              <input type="number" inputmode="numeric" id="inpVTespBasal" onfocus="this.select()" onchange="AppState.preSBT.vTesp=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="450">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">Pocc Basal (-cmH2O):</label>
+              <input type="number" inputmode="decimal" id="inpPoccBasal" onfocus="this.select()" onchange="AppState.preSBT.pOcc=-Math.abs(parseFloat(this.value)||0); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="-10">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">P0.1 Basal (-cmH2O):</label>
+              <input type="number" inputmode="decimal" step="0.1" id="inpP01Basal" onfocus="this.select()" onchange="AppState.preSBT.p01=-Math.abs(parseFloat(this.value)||0); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="-1.5">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">PAM / (PAS/PAD):</label>
+              <input type="text" id="inpPAMBasal" onfocus="this.select()" onchange="AppState.preSBT.pam=Calculators.parsePAM(this.value); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="85">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">FC Basal (lpm):</label>
+              <input type="number" inputmode="numeric" id="inpFCBasal" onfocus="this.select()" onchange="AppState.preSBT.fc=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="75">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#AEE2FA] font-bold block">SpO2 Basal (%):</label>
+              <input type="number" inputmode="numeric" id="inpSpO2Basal" onfocus="this.select()" onchange="AppState.preSBT.spO2=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="98">
+            </div>
+            <div>
+              <label class="text-[10px] text-[#FEB468] font-bold block">NIF Pre-SBT (-cmH2O):</label>
+              <input type="number" inputmode="decimal" id="inpNIFBasal" onfocus="this.select()" onchange="AppState.preSBT.nif=-Math.abs(parseFloat(this.value)||0);" class="input-pb font-mono font-bold text-[#FEB468]" value="-25">
+            </div>
           </div>
 
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">SvcO2 (%):</label>
-            <button type="button" onclick="PickerMaster.open('svcO2', 'SvcO2 (%)', Array.from({length:61},(_,i)=>i+40), AppState.preSBT.svcO2)" id="btnSvcO2" class="input-pb text-left">70 %</button>
+          <!-- FRANJA DERIVADA DE MECÁNICA BASAL PRE-SBT -->
+          <div class="bg-[#3D3F4B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
+            <div>VM: <span id="lblBasalVM" class="font-bold text-[#FEB468]">7.2 L/min</span></div>
+            <div>Pmus: <span id="lblBasalPmus" class="font-bold text-[#FEB468]">--</span></div>
+            <div>Cdyn: <span id="lblBasalCdyn" class="font-bold text-[#FEB468]">--</span></div>
+            <div>LTCdyn-MP: <span id="lblBasalLTCdyn" class="font-bold text-[#FEB468]">--</span></div>
+            <div>RSBI: <span id="lblBasalRSBI" class="font-bold text-[#FEB468]">--</span></div>
+            <div>SaFi: <span id="lblBasalSaFi" class="font-bold text-[#FEB468]">--</span></div>
+            <div>PaFi: <span id="lblBasalPaFi" class="font-bold text-[#FEB468]">--</span></div>
           </div>
-
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hemoglobina Hb (g/dL):</label>
-            <button type="button" onclick="PickerMaster.open('hb', 'Hemoglobina (g/dL)', Array.from({length:151},(_,i)=>(5.0 + i*0.1).toFixed(1)), AppState.preSBT.hb)" id="btnHb" class="input-pb text-left">12.0 g/dL</button>
-          </div>
-
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hematocrito Htc (%):</label>
-            <button type="button" onclick="PickerMaster.open('htc', 'Hematocrito (%)', Array.from({length:46},(_,i)=>i+15), AppState.preSBT.htc)" id="btnHtc" class="input-pb text-left">36 %</button>
-          </div>
-
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Temperatura (°C):</label>
-            <button type="button" onclick="PickerMaster.open('temp', 'Temp (°C)', Array.from({length:71},(_,i)=>(35.0 + i*0.1).toFixed(1)), AppState.preSBT.temp)" id="btnTemp" class="input-pb text-left">36.5 °C</button>
-          </div>
-
-          <!-- Parámetros Ventilatorios Basales Pre-SBT -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#004FA8]/50 p-2 rounded border border-[#AEE2FA] mb-3">
-          <div>
-            <label class="text-xs text-[#FEB468] font-bold block mb-1">Ps Basal (cmH2O):</label>
-            <button type="button" onclick="PickerMaster.open('psBasal', 'Ps Basal (cmH2O)', Array.from({length:31},(_,i)=>i), AppState.preSBT.psBasal || 10)" id="btnPsBasal" class="input-pb text-left font-mono">10 cmH2O</button>
-          </div>
-          <div>
-            <label class="text-xs text-[#FEB468] font-bold block mb-1">PEEP Basal (cmH2O):</label>
-            <button type="button" onclick="PickerMaster.open('peepBasal', 'PEEP Basal (cmH2O)', Array.from({length:21},(_,i)=>i), AppState.preSBT.peepBasal || 5)" id="btnPEEPBasal" class="input-pb text-left font-mono">5 cmH2O</button>
-          </div>
-          
         </div>
 
-        <!-- Indicadores Oxigenatorios Resultantes -->
-        <div class="bg-[#004FA8] p-3 rounded border border-[#AEE2FA] flex flex-wrap justify-around items-center gap-2">
-          <div class="text-center">
-            <span class="text-[10px] text-[#AEE2FA] uppercase block">Relación SaFi (SpO2/FiO2):</span>
-            <span id="lblSaFi" class="font-bold text-base text-[#FEB468]">---</span>
+        <!-- Laboratorios Basales y Gasometría con Teclados Numéricos Directos -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-2">
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">pH Gasométrico:</label>
+            <input type="number" inputmode="decimal" step="0.01" id="inpPH" onfocus="this.select()" onchange="AppState.preSBT.pH=this.value; AppEngine.saveState();" class="input-pb font-mono" value="7.40">
           </div>
-          <div class="text-center">
-            <span class="text-[10px] text-[#AEE2FA] uppercase block">Relación PaFi (PaO2/FiO2):</span>
-            <span id="lblPaFi" class="font-bold text-base text-[#FEB468]">---</span>
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">PaO2 (mmHg):</label>
+            <input type="number" inputmode="numeric" id="inpPaO2" onfocus="this.select()" placeholder="Omitir / SaFi" onchange="AppState.preSBT.paO2=parseFloat(this.value)||null; DOMWriter.renderPreSBT();" class="input-pb font-mono">
+          </div>
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">SvcO2 (%):</label>
+            <input type="number" inputmode="numeric" id="inpSvcO2" onfocus="this.select()" onchange="AppState.preSBT.svcO2=this.value; AppEngine.saveState();" class="input-pb font-mono" value="70">
+          </div>
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hemoglobina (g/dL):</label>
+            <input type="number" inputmode="decimal" step="0.1" id="inpHb" onfocus="this.select()" onchange="AppState.preSBT.hb=this.value; AppEngine.saveState();" class="input-pb font-mono" value="12.0">
+          </div>
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hematocrito (%):</label>
+            <input type="number" inputmode="numeric" id="inpHtc" onfocus="this.select()" onchange="AppState.preSBT.htc=this.value; AppEngine.saveState();" class="input-pb font-mono" value="36">
+          </div>
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Temperatura (°C):</label>
+            <input type="number" inputmode="decimal" step="0.1" id="inpTemp" onfocus="this.select()" onchange="AppState.preSBT.temp=this.value; AppEngine.saveState();" class="input-pb font-mono" value="36.5">
           </div>
         </div>
 
@@ -466,9 +500,9 @@
 
       </div>
     </section>
-<!-- PASO 3: MONITOREO EN VIVO TRANS-SBT -->
-    <section id="secStep3" class="bg-[#3D3F4B] border border-[#5D6C87] rounded-lg overflow-hidden shadow-md">
-      <!-- Encabezado Acordeón -->
+
+    <!-- PASO 3: MONITOREO EN VIVO TRANS-SBT -->
+    <section id="secStep3" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep3" onclick="DOMWriter.toggleAccordion('step3')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 3</span>
@@ -477,7 +511,6 @@
         <span id="badgeStep3" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">En Espera</span>
       </div>
 
-      <!-- Contenido Acordeón -->
       <div id="contentStep3" class="accordion-content p-4 space-y-4">
         
         <!-- TARJETA DE CAPTURA EN VIVO (LIVE CAPTURE CARD) -->
@@ -494,76 +527,78 @@
               Soporte Fijo: <span id="lblStaticSupport" class="font-bold text-[#FEB468]">Ps: 0 cmH2O | PEEP: 0 cmH2O</span>
             </div>
 
-            <!-- Navegación entre Tiempos -->
             <div class="flex space-x-1">
               <button type="button" onclick="AppEngine.navTimepoint(-1)" class="btn-pb px-3 py-1 text-xs">◀ PREV</button>
               <button type="button" onclick="AppEngine.navTimepoint(1)" class="btn-pb px-3 py-1 text-xs">SIG ▶</button>
             </div>
           </div>
 
-          <!-- Campos de Entrada Medidos Directos -->
+          <!-- Campos de Entrada Medidos Directos con Teclado Numérico Nativo -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-3">
             
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Ppico (cmH2O):</label>
-              <button type="button" onclick="PickerMaster.openTrans('pPico', 'Ppico (cmH2O)', Array.from({length:61},(_,i)=>i))" id="btnLivePPico" class="input-pb text-left font-mono font-bold text-base">0</button>
+              <input type="number" inputmode="numeric" id="btnLivePPico" onfocus="this.select()" onchange="AppEngine.updateTransVal('pPico', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="12">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">FiO2 (%):</label>
-              <button type="button" onclick="PickerMaster.openTrans('fiO2', 'FiO2 (%)', Array.from({length:80},(_,i)=>i+21))" id="btnLiveFiO2" class="input-pb text-left font-mono font-bold text-base">21 %</button>
+              <input type="number" inputmode="numeric" id="btnLiveFiO2" onfocus="this.select()" onchange="AppEngine.updateTransVal('fiO2', parseFloat(this.value)||21)" class="input-pb font-mono font-bold text-base" value="21">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">RResp (rpm):</label>
-              <button type="button" onclick="PickerMaster.openTrans('rResp', 'RResp (rpm)', Array.from({length:51},(_,i)=>i+5))" id="btnLiveRResp" class="input-pb text-left font-mono font-bold text-base">12</button>
+              <input type="number" inputmode="numeric" id="btnLiveRResp" onfocus="this.select()" onchange="AppEngine.updateTransVal('rResp', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="12">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">VTesp (mL):</label>
-              <button type="button" onclick="PickerMaster.openTrans('vTesp', 'VTesp (mL)', Array.from({length:100},(_,i)=>(i+1)*10))" id="btnLiveVTesp" class="input-pb text-left font-mono font-bold text-base">400 mL</button>
+              <input type="number" inputmode="numeric" id="btnLiveVTesp" onfocus="this.select()" onchange="AppEngine.updateTransVal('vTesp', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="400">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Pocc (-cmH2O):</label>
-              <button type="button" onclick="PickerMaster.openTrans('pOcc', 'Pocc (-cmH2O)', Array.from({length:41},(_,i)=>-i))" id="btnLivePOcc" class="input-pb text-left font-mono font-bold text-base">0</button>
+              <input type="number" inputmode="decimal" id="btnLivePOcc" onfocus="this.select()" onchange="AppEngine.updateTransVal('pOcc', -Math.abs(parseFloat(this.value)||0))" class="input-pb font-mono font-bold text-base" value="0">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">P0.1 (-cmH2O):</label>
-              <button type="button" onclick="PickerMaster.openTrans('p01', 'P0.1 (-cmH2O)', Array.from({length:151},(_,i)=>(-i*0.1).toFixed(1)))" id="btnLiveP01" class="input-pb text-left font-mono font-bold text-base">0.0</button>
+              <input type="number" inputmode="decimal" step="0.1" id="btnLiveP01" onfocus="this.select()" onchange="AppEngine.updateTransVal('p01', -Math.abs(parseFloat(this.value)||0))" class="input-pb font-mono font-bold text-base" value="0.0">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">PAM / (PAS/PAD):</label>
-              <input type="text" id="inpLivePAM" onblur="AppEngine.handlePAMBlur(this.value)" class="input-pb text-left font-mono font-bold text-base" placeholder="85 o 110/70">
+              <input type="text" id="inpLivePAM" onfocus="this.select()" onchange="AppEngine.handlePAMBlur(this.value)" class="input-pb font-mono font-bold text-base" placeholder="85 o 110/70" value="85">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">FC (lpm):</label>
-              <button type="button" onclick="PickerMaster.openTrans('fc', 'FC (lpm)', Array.from({length:161},(_,i)=>i+30))" id="btnLiveFC" class="input-pb text-left font-mono font-bold text-base">75 lpm</button>
+              <input type="number" inputmode="numeric" id="btnLiveFC" onfocus="this.select()" onchange="AppEngine.updateTransVal('fc', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="75">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">SpO2 (%):</label>
-              <button type="button" onclick="PickerMaster.openTrans('spO2', 'SpO2 (%)', Array.from({length:51},(_,i)=>i+50))" id="btnLiveSpO2" class="input-pb text-left font-mono font-bold text-base">98 %</button>
+              <input type="number" inputmode="numeric" id="btnLiveSpO2" onfocus="this.select()" onchange="AppEngine.updateTransVal('spO2', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="98">
             </div>
 
-            <!-- Campo Condicional F/I (si PSV+) -->
             <div id="wrapperLiveFI" class="hidden">
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Indice F/I:</label>
-              <button type="button" onclick="PickerMaster.openTrans('fI', 'Indice F/I', ['=1', '>1', '<1', 'N/A'])" id="btnLiveFI" class="input-pb text-left font-mono font-bold text-base">=1</button>
+              <select id="btnLiveFI" onchange="AppEngine.updateTransVal('fI', this.value)" class="input-pb font-mono font-bold text-base">
+                <option value="=1">=1</option>
+                <option value=">1">&gt;1</option>
+                <option value="<1">&lt;1</option>
+                <option value="N/A">N/A</option>
+              </select>
             </div>
 
-            <!-- Campo Condicional Mitr (si Card) -->
             <div id="wrapperLiveMitr" class="hidden">
               <label class="text-[10px] text-[#FEB468] font-bold block">Mitral E/E':</label>
-              <button type="button" onclick="PickerMaster.openTrans('mitr', 'Mitral E/E\'', Array.from({length:41},(_,i)=>(i*0.5).toFixed(1)))" id="btnLiveMitr" class="input-pb text-left font-mono font-bold text-base text-[#FEB468]">0.0</button>
+              <input type="number" inputmode="decimal" step="0.1" id="btnLiveMitr" onfocus="this.select()" onchange="AppEngine.updateTransVal('mitr', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base text-[#FEB468]" value="0.0">
             </div>
 
           </div>
 
-          <!-- FRANJA DE PARÁMETROS CALCULADOS DERIVADOS (FUENTE PEQUEÑA) -->
+          <!-- FRANJA DE PARÁMETROS CALCULADOS DERIVADOS -->
           <div class="bg-[#3D3F4B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
             <div>VM: <span id="lblDerivedVM" class="font-bold text-[#FEB468]">4.8 L/min</span></div>
             <div>Pmus: <span id="lblDerivedPmus" class="font-bold text-[#FEB468]">0.0 cmH2O</span></div>
@@ -611,7 +646,7 @@
 
   </main>
 
-  <!-- MASTER THUMB SCROLLER FLOTANTE (INFERIOR DERECHO) -->
+  <!-- MASTER THUMB SCROLLER FLOTANTE -->
   <div id="masterScroller" class="fixed bottom-4 right-4 z-40 bg-[#004FA8] border-2 border-[#FEB468] p-2 rounded-lg shadow-2xl flex flex-col items-center space-y-2 hidden">
     <div class="text-[10px] text-[#FEB468] font-bold uppercase" id="scrollerLabel">Ajuste Rápido</div>
     <div class="flex space-x-2">
@@ -624,7 +659,7 @@
     <button type="button" onclick="PickerMaster.close()" class="btn-pb w-full py-1 text-xs bg-gray-700">OK / CERRAR</button>
   </div>
 
-  <!-- MODAL UNIVERSAL PARA PICKER VERTICAL (BOTTOM SHEET) -->
+  <!-- MODAL UNIVERSAL PARA PICKER VERTICAL -->
   <div id="pickerModal" class="fixed inset-0 z-50 bg-black/70 flex justify-end flex-col hidden">
     <div class="bg-[#3D3F4B] border-t-2 border-[#FEB468] rounded-t-2xl p-4 max-w-lg w-full mx-auto shadow-2xl">
       <div class="flex justify-between items-center border-b border-[#5D6C87] pb-2 mb-2">
@@ -632,10 +667,7 @@
         <button type="button" onclick="PickerMaster.closeModal()" class="text-white text-xl font-bold px-2">&times;</button>
       </div>
       
-      <!-- Contenedor del Rodillo CSS Scroll-Snap -->
-      <div id="pickerItemsContainer" class="picker-container my-4">
-        <!-- Elementos del rodillo generados dinámicamente -->
-      </div>
+      <div id="pickerItemsContainer" class="picker-container my-4"></div>
 
       <button type="button" onclick="PickerMaster.confirmModal()" class="btn-pb w-full py-3 text-sm">CONFIRMAR SELECCIÓN</button>
     </div>
@@ -649,10 +681,7 @@
         <button type="button" onclick="ScalesEngine.closeModal()" class="text-white text-2xl font-bold">&times;</button>
       </div>
 
-      <!-- Cuerpo dinámico de preguntas/selectores de la escala -->
-      <div id="scaleModalBody" class="space-y-3">
-        <!-- Generado dinámicamente para FOUR, GCS, MRC, SOFA-2, ExPreS, Visage -->
-      </div>
+      <div id="scaleModalBody" class="space-y-3"></div>
 
       <div class="flex justify-end space-x-2 pt-3 border-t border-[#5D6C87]">
         <button type="button" onclick="ScalesEngine.closeModal()" class="btn-pb px-4 py-2 text-xs bg-gray-600">CANCELAR</button>
@@ -660,7 +689,8 @@
       </div>
     </div>
   </div>
-<script>
+
+  <script>
     /* ==========================================================================
        1. ARBOL DE ESTADO CENTRALIZADO (APP STATE) Y PERSISTENCIA LOCAL
        ========================================================================== */
@@ -675,8 +705,10 @@
       },
       preSBT: {
         dxAct: true, hd: true, vasop: false, esp: true,
-        psBasal: 10, peepBasal: 5,
-        pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",        paFi: null, saFi: null, mitr: "0.0",
+        psBasal: 10, peepBasal: 5, pPico: 18, fiO2: 30, rResp: 16, vTesp: 450,
+        pOcc: -10, p01: -1.5, pam: 85, fc: 75, spO2: 98, nif: -25,
+        pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",
+        paFi: null, saFi: null, mitr: "0.0",
         four: null, gcs: null, mrc: null, sofa2: null, expres: null, visage: null,
         isComplete: false
       },
@@ -694,14 +726,12 @@
        2. MOTOR DE FÓRMULAS MATEMÁTICAS Y FISIOLÓGICAS (CALCULATORS)
        ========================================================================== */
     const Calculators = {
-      // Índice de Masa Corporal (IMC) = W / (H^2)
       calcIMC(weight, heightMeters) {
         if (!weight || !heightMeters || heightMeters <= 0) return "---";
         const imc = weight / (heightMeters * heightMeters);
         return imc.toFixed(1) + " kg/m²";
       },
 
-      // Peso Corporal Predicho (PBW)
       calcPBW(heightMeters, sex) {
         if (!heightMeters || heightMeters <= 0) return "---";
         const heightCm = heightMeters * 100;
@@ -714,30 +744,25 @@
         return Math.max(0, pbw).toFixed(1) + " kg";
       },
 
-      // Relación SaFi = SpO2 / (FiO2 / 100)
       calcSaFi(spO2, fiO2Percent) {
         if (!spO2 || !fiO2Percent || fiO2Percent <= 0) return "---";
         const fiO2Dec = fiO2Percent / 100;
         return (spO2 / fiO2Dec).toFixed(1);
       },
 
-      // Relación PaFi (Directo con PaO2 o Fallback estimado via SaFi)
       calcPaFi(paO2, spO2, fiO2Percent) {
         if (!fiO2Percent || fiO2Percent <= 0) return "---";
         const fiO2Dec = fiO2Percent / 100;
 
-        // Cálculo directo con PaO2
         if (paO2 && !isNaN(paO2) && paO2 > 0) {
           return (paO2 / fiO2Dec).toFixed(1);
         }
 
-        // Estimación desde SaFi: PaFi = (SaFi - 64) / 0.84
         if (spO2 && spO2 > 0) {
           const saFiVal = spO2 / fiO2Dec;
           let paFiEst = (saFiVal - 64) / 0.84;
           paFiEst = Math.max(0, paFiEst).toFixed(1);
 
-          // Alerta si SpO2 >= 98%
           if (spO2 >= 98) {
             return paFiEst + "*!!!";
           }
@@ -747,28 +772,24 @@
         return "---";
       },
 
-      // Volumen Minuto VM = (VTesp / 1000) * RResp
       calcVM(vTesp, rResp) {
         if (!vTesp || !rResp || vTesp <= 0 || rResp <= 0) return "0.0";
         return ((vTesp / 1000) * rResp).toFixed(1);
       },
 
-      // Presión Muscular Pmus = 0.75 * Pocc (-cmH2O)
       calcPmus(pOcc) {
         if (pOcc === null || pOcc === undefined || isNaN(pOcc)) return "0.0";
         const negPOcc = -Math.abs(parseFloat(pOcc));
         return (0.75 * negPOcc).toFixed(1);
       },
 
-      // Complianza Dinámica Cdyn = VTesp / (Ppico - PEEP)
       calcCdyn(vTesp, pPico, peep) {
         if (!vTesp || vTesp <= 0) return "#?";
         const diff = pPico - peep;
-        if (diff <= 0) return "#?"; // Protección contra división por cero
+        if (diff <= 0) return "#?";
         return (vTesp / diff).toFixed(1);
       },
 
-      // Densidad del Poder Mecánico LTCdyn-MP = RResp * Ppico * (Ppico - PEEP)
       calcLTCdyn(rResp, pPico, peep) {
         if (!rResp || rResp <= 0) return "0";
         const diff = pPico - peep;
@@ -776,18 +797,15 @@
         return Math.round(rResp * pPico * diff).toString();
       },
 
-      // Índice de Tobin-Yang RSBI = RResp / (VTesp / 1000)
       calcRSBI(rResp, vTesp) {
         if (!vTesp || vTesp <= 0 || !rResp || rResp <= 0) return "#?";
         return (rResp / (vTesp / 1000)).toFixed(1);
       },
 
-      // Smart Parser para PAM (Acepta número directo o "PAS/PAD")
       parsePAM(inputStr) {
         if (!inputStr) return 0;
         const str = String(inputStr).trim();
         
-        // Regex para detectar "PAS/PAD" o "PAS-PAD"
         const regexMatch = str.match(/^(\d{2,3})\s*[\/\-]\s*(\d{2,3})$/);
         if (regexMatch) {
           const pas = parseInt(regexMatch[1], 10);
@@ -795,12 +813,10 @@
           return Math.round((pas + (2 * pad)) / 3);
         }
 
-        // Si es número directo
         const num = parseInt(str, 10);
         return isNaN(num) ? 0 : num;
       },
 
-      // Sanitizador numérico para PaFi (Remueve el flag "*!!!")
       cleanPaFiVal(paFiStr) {
         if (!paFiStr || paFiStr === "---" || paFiStr === "#?") return 0;
         const clean = String(paFiStr).replace("*!!!", "");
@@ -826,13 +842,11 @@
             const parsed = JSON.parse(saved);
             Object.assign(AppState, parsed);
           }
-          // Garantiza inicialización de campos basales si provienen de memoria previa
           if (!AppState.preSBT.psBasal) AppState.preSBT.psBasal = 10;
           if (!AppState.preSBT.peepBasal) AppState.preSBT.peepBasal = 5;
         } catch(e) { console.error('Error cargando estado', e); }
       },
 
-      // Cálculo dinámico de días desde fechas
       calcDays(type, dateStr) {
         if (!dateStr) return;
         const targetDate = new Date(dateStr);
@@ -857,17 +871,14 @@
         AppEngine.saveState();
       },
 
-      // Generador dinámico del Folio Identificador 000[E/Q][M/Z/U]
       updateFolio() {
         const seq = String(AppState.patient.seqDigits || "001").padStart(3, '0');
         
-        // Vía aérea (Q si TQT activa, E si TET)
         let airway = "E";
         if (AppState.patient.tqt && AppState.patient.tqt !== "N/A" && AppState.patient.tqt !== "0") {
           airway = "Q";
         }
 
-        // Última letra del Hospital
         const hospStr = AppState.patient.hosp || "HM";
         const hospLetter = hospStr.charAt(hospStr.length - 1).toUpperCase();
 
@@ -878,7 +889,8 @@
         document.getElementById('inpFolioFull').value = folio;
       }
     };
-/* ==========================================================================
+
+    /* ==========================================================================
        4. MOTOR DE ESCALAS CLÍNICAS INTERCONECTADAS (SCALES ENGINE)
        ========================================================================== */
     const ScalesEngine = {
@@ -888,7 +900,6 @@
         document.getElementById('scaleModal').classList.add('hidden');
       },
 
-      /* --- ESCALA FOUR (0 - 16 PTS) --- */
       openFOUR() {
         this.activeScale = 'FOUR';
         document.getElementById('scaleModalTitle').innerText = 'CALCULADORA ESCALA FOUR';
@@ -942,7 +953,6 @@
         document.getElementById('scaleModal').classList.remove('hidden');
       },
 
-      /* --- ESCALA GCS (3 - 15 PTS) --- */
       openGCS() {
         this.activeScale = 'GCS';
         document.getElementById('scaleModalTitle').innerText = 'CALCULADORA GLASGOW (GCS)';
@@ -986,7 +996,6 @@
         document.getElementById('scaleModal').classList.remove('hidden');
       },
 
-      /* --- ESCALA MRC (0 - 60 PTS) --- */
       openMRC() {
         this.activeScale = 'MRC';
         document.getElementById('scaleModalTitle').innerText = 'ESCALA DE FUERZA MUSCULAR (MRC)';
@@ -1042,7 +1051,6 @@
         document.getElementById('scaleModal').classList.remove('hidden');
       },
 
-      // Réplica simétrica automática de fuerza izquierda a derecha
       mirrorMRC(group) {
         const valL = document.getElementById(`mrc_${group}_L`).value;
         const elemR = document.getElementById(`mrc_${group}_R`);
@@ -1056,7 +1064,6 @@
         this.closeModal();
       },
 
-      /* --- ESCALA SOFA-2 (0 - 24 PTS) --- */
       openSOFA2() {
         this.activeScale = 'SOFA2';
         document.getElementById('scaleModalTitle').innerText = 'CALCULADORA SOFA-2';
@@ -1122,7 +1129,6 @@
         document.getElementById('scaleModal').classList.remove('hidden');
       },
 
-      /* --- ESCALA EXPRES (0 - 100 PTS) --- */
       openExPreS() {
         this.activeScale = 'ExPreS';
         document.getElementById('scaleModalTitle').innerText = 'CALCULADORA ExPreS';
@@ -1171,7 +1177,6 @@
         document.getElementById('scaleModal').classList.remove('hidden');
       },
 
-      // Habilitador condicional de la Escala VISAGE
       toggleNeuroTrigger(isCheck) {
         const btnVisage = document.getElementById('btnModalVisage');
         if (isCheck) {
@@ -1186,7 +1191,6 @@
         }
       },
 
-      /* --- ESCALA VISAGE (0 - 4 PTS) --- */
       openVisage() {
         this.activeScale = 'Visage';
         document.getElementById('scaleModalTitle').innerText = 'ESCALA NEUROLÓGICA VISAGE';
@@ -1220,7 +1224,6 @@
         document.getElementById('scaleModal').classList.remove('hidden');
       },
 
-      /* --- CONSOLIDACIÓN Y GUARDADO DE RESULTADOS DE ESCALAS --- */
       saveCurrentScale() {
         if (this.activeScale === 'FOUR') {
           const o = parseInt(document.getElementById('fourO').value, 10);
@@ -1278,9 +1281,7 @@
           document.getElementById('scoreSOFA2').innerText = `${total} / 24 pts`;
         }
         else if (this.activeScale === 'ExPreS') {
-          // Evaluación de puntos ExPreS
-          let ptsRSBI = 0; // Evaluado de Trans-SBT baseline
-          let ptsCdyn = 0;
+          let ptsRSBI = 0;
           let ptsDVM = 0;
           const dVm = AppState.patient.dVm || 0;
           if (dVm <= 3) ptsDVM = 10;
@@ -1306,7 +1307,7 @@
           const isNeuro = document.getElementById('chkNeuroComorb').checked;
           const ptsNeuro = isNeuro ? 0 : 10;
 
-          const total = ptsRSBI + ptsCdyn + ptsDVM + ptsGCS + ptsMRC + ptsHtc + ptsCr + ptsNeuro;
+          const total = ptsRSBI + ptsDVM + ptsGCS + ptsMRC + ptsHtc + ptsCr + ptsNeuro;
           
           let prob = "< 45 (57.1% Éxito)";
           if (total >= 58) prob = "> 58 (98.7% Éxito)";
@@ -1331,18 +1332,19 @@
         this.closeModal();
       }
     };
-/* ==========================================================================
+
+    /* ==========================================================================
        5. CONTROL DE PICKERS VERTICALES Y MASTER THUMB SCROLLER
        ========================================================================== */
-const PickerMaster = {
+    const PickerMaster = {
       activeField: null,
-      activeType: 'pre', // 'patient_or_pre' o 'trans'
+      activeType: 'pre',
       currentOptions: [],
       selectedIndex: 0,
 
       open(field, title, options, currentValue, type = 'patient_or_pre') {
         this.activeField = field;
-        this.activeType = type; // Asignación corregida respetando el tipo
+        this.activeType = type;
         this.currentOptions = options;
         
         document.getElementById('pickerModalTitle').innerText = title.toUpperCase();
@@ -1368,8 +1370,6 @@ const PickerMaster = {
       openTrans(field, title, options) {
         const row = AppState.transSBT.rows[AppState.transSBT.activeIndex];
         const curVal = row ? row[field] : options[0];
-
-        // Llama a open pasando explícitamente el tipo 'trans'
         this.open(field, title, options, curVal, 'trans');
       },
 
@@ -1390,19 +1390,15 @@ const PickerMaster = {
           if (row) {
             row[this.activeField] = val;
             row.isTouched = true;
-            
-            // Arrastre Progresivo (Forward-Carrying Values)
             this.propagateForward(AppState.transSBT.activeIndex, this.activeField, val);
           }
         } else {
-          // Asignación directa y flexible en Patient o PreSBT
           if (this.activeField in AppState.patient) {
             AppState.patient[this.activeField] = val;
             if (this.activeField === 'hosp' || this.activeField === 'tet' || this.activeField === 'tqt') {
               AppEngine.updateFolio();
             }
           } else {
-            // Asigna directamente a PreSBT sin depender de memoria previa
             AppState.preSBT[this.activeField] = val;
           }
         }
@@ -1417,19 +1413,17 @@ const PickerMaster = {
         document.getElementById('masterScroller').classList.add('hidden');
       },
 
-      // Arrastre de valores al siguiente intervalo de tiempo si no ha sido tocado
       propagateForward(startIndex, field, value) {
         for (let i = startIndex + 1; i < AppState.transSBT.rows.length; i++) {
           const nextRow = AppState.transSBT.rows[i];
           if (!nextRow.isTouched) {
             nextRow[field] = value;
           } else {
-            break; // Rompe la cascada si la fila futura ya fue modificada manualmente
+            break;
           }
         }
       },
 
-      /* --- MASTER THUMB SCROLLER FLOTANTE --- */
       showScroller(label, val) {
         document.getElementById('scrollerLabel').innerText = label;
         const slider = document.getElementById('scrollerSlider');
@@ -1475,52 +1469,94 @@ const PickerMaster = {
       },
 
       renderDemographics() {
-        document.getElementById('btnHosp').innerText = AppState.patient.hosp;
-        document.getElementById('btnSeqDigits').innerText = AppState.patient.seqDigits;
-        document.getElementById('btnEdad').innerText = `${AppState.patient.edad} Años`;
-        document.getElementById('btnSexo').innerText = AppState.patient.sexo;
-        document.getElementById('btnTalla').innerText = `${AppState.patient.talla} m`;
-        document.getElementById('btnPeso').innerText = `${parseFloat(AppState.patient.peso).toFixed(1)} kg`;
-        document.getElementById('btnTET').innerText = AppState.patient.tet;
-        document.getElementById('btnTQT').innerText = AppState.patient.tqt;
-        document.getElementById('btnDSeda').innerText = `${AppState.patient.dSeda} días`;
-        document.getElementById('btnDBnm').innerText = `${AppState.patient.dBnm} días`;
-        document.getElementById('btnSubgrupo').innerText = AppState.patient.subgrupo;
+        const p = AppState.patient;
+        if (document.getElementById('inpNombre')) document.getElementById('inpNombre').value = p.nombre || '';
+        if (document.getElementById('btnHosp')) document.getElementById('btnHosp').innerText = p.hosp;
+        if (document.getElementById('inpExp')) document.getElementById('inpExp').value = p.exp || '';
+        if (document.getElementById('btnSeqDigits')) document.getElementById('btnSeqDigits').innerText = p.seqDigits;
+        
+        if (document.getElementById('inpFechaHosp')) document.getElementById('inpFechaHosp').value = p.fechaHosp || '';
+        if (document.getElementById('inpFechaIOT')) document.getElementById('inpFechaIOT').value = p.fechaIOT || '';
+        if (document.getElementById('inpFechaTQT')) document.getElementById('inpFechaTQT').value = p.fechaTQT || '';
+        if (document.getElementById('lblDHosp')) document.getElementById('lblDHosp').innerText = `Días Hosp: ${p.dHosp || 0}`;
+        if (document.getElementById('lblDIOT')) document.getElementById('lblDIOT').innerText = `Días IOT/VM: ${p.dVm || 0}`;
+        if (document.getElementById('lblDTQT')) document.getElementById('lblDTQT').innerText = `Días TQT: ${p.dTqt || 'N/A'}`;
 
-        // Fórmulas Antropométricas
-        const imc = Calculators.calcIMC(AppState.patient.peso, AppState.patient.talla);
-        const pbw = Calculators.calcPBW(AppState.patient.talla, AppState.patient.sexo);
+        if (document.getElementById('inpDx')) document.getElementById('inpDx').value = p.dx || '';
+        if (document.getElementById('inpComorb')) document.getElementById('inpComorb').value = p.comorb || '';
+        if (document.getElementById('inpIotReason')) document.getElementById('inpIotReason').value = p.iotReason || '';
+        if (document.getElementById('inpEdad')) document.getElementById('inpEdad').value = p.edad;
+        if (document.getElementById('btnSexo')) document.getElementById('btnSexo').innerText = p.sexo;
+        if (document.getElementById('inpTalla')) document.getElementById('inpTalla').value = p.talla;
+        if (document.getElementById('inpPeso')) document.getElementById('inpPeso').value = p.peso;
+        if (document.getElementById('btnTET')) document.getElementById('btnTET').innerText = p.tet;
+        if (document.getElementById('btnTQT')) document.getElementById('btnTQT').innerText = p.tqt;
+        if (document.getElementById('inpDSeda')) document.getElementById('inpDSeda').value = p.dSeda;
+        if (document.getElementById('inpDBnm')) document.getElementById('inpDBnm').value = p.dBnm;
+        if (document.getElementById('btnSubgrupo')) document.getElementById('btnSubgrupo').innerText = p.subgrupo;
+
+        const imc = Calculators.calcIMC(p.peso, p.talla);
+        const pbw = Calculators.calcPBW(p.talla, p.sexo);
         document.getElementById('lblIMC').innerText = imc;
         document.getElementById('lblPBW').innerText = pbw;
 
-        // Visibilidad por Subgrupo
-        const isCard = AppState.patient.subgrupo === 'Card';
-        const isPSV = AppState.patient.subgrupo === 'PSV+';
+        const isCard = p.subgrupo === 'Card';
+        const isPSV = p.subgrupo === 'PSV+';
         
         document.getElementById('wrapperLiveFI').classList.toggle('hidden', !isPSV);
         document.getElementById('wrapperLiveMitr').classList.toggle('hidden', !isCard);
         document.getElementById('thMitr').classList.toggle('hidden', !isCard);
+
+        if (p.subgrupo === '0/ZEEP') {
+          AppState.transSBT.psStatic = 0;
+          AppState.transSBT.peepStatic = 0;
+        } else if (p.subgrupo === 'PSV+') {
+          AppState.transSBT.psStatic = AppState.preSBT.psBasal || 7;
+          AppState.transSBT.peepStatic = AppState.preSBT.peepBasal || 5;
+        }
       },
 
       renderPreSBT() {
-        if (document.getElementById('btnPsBasal')) document.getElementById('btnPsBasal').innerText = `${AppState.preSBT.psBasal || 10} cmH2O`;
-        if (document.getElementById('btnPEEPBasal')) document.getElementById('btnPEEPBasal').innerText = `${AppState.preSBT.peepBasal || 5} cmH2O`;
-        document.getElementById('btnPH').innerText = AppState.preSBT.pH;
-        document.getElementById('btnPaO2').innerText = AppState.preSBT.paO2 ? `${AppState.preSBT.paO2} mmHg` : 'Omitir / SaFi';
-        document.getElementById('btnSvcO2').innerText = `${AppState.preSBT.svcO2} %`;
-        document.getElementById('btnHb').innerText = `${AppState.preSBT.hb} g/dL`;
-        document.getElementById('btnHtc').innerText = `${AppState.preSBT.htc} %`;
-        document.getElementById('btnTemp').innerText = `${AppState.preSBT.temp} °C`;
-
-        // Indicadores Oxigenatorios Basales
-        const fiO2 = AppState.transSBT.rows[0] ? AppState.transSBT.rows[0].fiO2 : 21;
-        const spO2 = AppState.transSBT.rows[0] ? AppState.transSBT.rows[0].spO2 : 98;
+        const pre = AppState.preSBT;
         
-        const saFi = Calculators.calcSaFi(spO2, fiO2);
-        const paFi = Calculators.calcPaFi(AppState.preSBT.paO2, spO2, fiO2);
+        if (document.getElementById('inpPsBasal')) document.getElementById('inpPsBasal').value = pre.psBasal;
+        if (document.getElementById('inpPEEPBasal')) document.getElementById('inpPEEPBasal').value = pre.peepBasal;
+        if (document.getElementById('inpPpicoBasal')) document.getElementById('inpPpicoBasal').value = pre.pPico;
+        if (document.getElementById('inpFiO2Basal')) document.getElementById('inpFiO2Basal').value = pre.fiO2;
+        if (document.getElementById('inpRRespBasal')) document.getElementById('inpRRespBasal').value = pre.rResp;
+        if (document.getElementById('inpVTespBasal')) document.getElementById('inpVTespBasal').value = pre.vTesp;
+        if (document.getElementById('inpPoccBasal')) document.getElementById('inpPoccBasal').value = pre.pOcc;
+        if (document.getElementById('inpP01Basal')) document.getElementById('inpP01Basal').value = pre.p01;
+        if (document.getElementById('inpPAMBasal')) document.getElementById('inpPAMBasal').value = pre.pam;
+        if (document.getElementById('inpFCBasal')) document.getElementById('inpFCBasal').value = pre.fc;
+        if (document.getElementById('inpSpO2Basal')) document.getElementById('inpSpO2Basal').value = pre.spO2;
+        if (document.getElementById('inpNIFBasal')) document.getElementById('inpNIFBasal').value = pre.nif;
+
+        if (document.getElementById('inpPH')) document.getElementById('inpPH').value = pre.pH;
+        if (document.getElementById('inpPaO2')) document.getElementById('inpPaO2').value = pre.paO2 || '';
+        if (document.getElementById('inpSvcO2')) document.getElementById('inpSvcO2').value = pre.svcO2;
+        if (document.getElementById('inpHb')) document.getElementById('inpHb').value = pre.hb;
+        if (document.getElementById('inpHtc')) document.getElementById('inpHtc').value = pre.htc;
+        if (document.getElementById('inpTemp')) document.getElementById('inpTemp').value = pre.temp;
+
+        const vm = Calculators.calcVM(pre.vTesp, pre.rResp);
+        const pmus = Calculators.calcPmus(pre.pOcc);
+        const cdyn = Calculators.calcCdyn(pre.vTesp, pre.pPico, pre.peepBasal);
+        const ltcdyn = Calculators.calcLTCdyn(pre.rResp, pre.pPico, pre.peepBasal);
+        const rsbi = Calculators.calcRSBI(pre.rResp, pre.vTesp);
+        const saFi = Calculators.calcSaFi(pre.spO2, pre.fiO2);
+        const paFi = Calculators.calcPaFi(pre.paO2, pre.spO2, pre.fiO2);
 
         AppState.preSBT.saFi = saFi;
         AppState.preSBT.paFi = paFi;
+
+        document.getElementById('lblBasalVM').innerText = `${vm} L/min`;
+        document.getElementById('lblBasalPmus').innerText = `${pmus} cmH2O`;
+        document.getElementById('lblBasalCdyn').innerText = cdyn;
+        document.getElementById('lblBasalLTCdyn').innerText = ltcdyn;
+        document.getElementById('lblBasalRSBI').innerText = rsbi;
+        document.getElementById('lblBasalSaFi').innerText = saFi;
+        document.getElementById('lblBasalPaFi').innerText = paFi;
 
         document.getElementById('lblSaFi').innerText = saFi;
         document.getElementById('lblPaFi').innerText = paFi;
@@ -1534,20 +1570,18 @@ const PickerMaster = {
         document.getElementById('lblActiveTimepoint').innerText = `MINUTO ${row.time}`;
         document.getElementById('lblStaticSupport').innerText = `Ps: ${AppState.transSBT.psStatic} cmH2O | PEEP: ${AppState.transSBT.peepStatic} cmH2O`;
 
-        // Botones Live Input
-        document.getElementById('btnLivePPico').innerText = row.pPico;
-        document.getElementById('btnLiveFiO2').innerText = `${row.fiO2} %`;
-        document.getElementById('btnLiveRResp').innerText = row.rResp;
-        document.getElementById('btnLiveVTesp').innerText = `${row.vTesp} mL`;
-        document.getElementById('btnLivePOcc').innerText = row.pOcc;
-        document.getElementById('btnLiveP01').innerText = row.p01;
+        document.getElementById('btnLivePPico').value = row.pPico;
+        document.getElementById('btnLiveFiO2').value = row.fiO2;
+        document.getElementById('btnLiveRResp').value = row.rResp;
+        document.getElementById('btnLiveVTesp').value = row.vTesp;
+        document.getElementById('btnLivePOcc').value = row.pOcc;
+        document.getElementById('btnLiveP01').value = row.p01;
         document.getElementById('inpLivePAM').value = row.pam;
-        document.getElementById('btnLiveFC').innerText = `${row.fc} lpm`;
-        document.getElementById('btnLiveSpO2').innerText = `${row.spO2} %`;
-        document.getElementById('btnLiveFI').innerText = row.fI;
-        document.getElementById('btnLiveMitr').innerText = row.mitr;
+        document.getElementById('btnLiveFC').value = row.fc;
+        document.getElementById('btnLiveSpO2').value = row.spO2;
+        if (document.getElementById('btnLiveFI')) document.getElementById('btnLiveFI').value = row.fI;
+        if (document.getElementById('btnLiveMitr')) document.getElementById('btnLiveMitr').value = row.mitr;
 
-        // Cálculos Secundarios Derivados
         const vm = Calculators.calcVM(row.vTesp, row.rResp);
         const pmus = Calculators.calcPmus(row.pOcc);
         const cdyn = Calculators.calcCdyn(row.vTesp, row.pPico, AppState.transSBT.peepStatic);
@@ -1562,7 +1596,6 @@ const PickerMaster = {
         document.getElementById('lblDerivedRSBI').innerText = rsbi;
         document.getElementById('lblDerivedSaFi').innerText = saFi;
 
-        // Renderizado de la Tabla Matriz
         this.renderTransSBTTable();
       },
 
@@ -1611,10 +1644,10 @@ const PickerMaster = {
         });
       }
     };
-/* ==========================================================================
+
+    /* ==========================================================================
        7. CRONÓMETRO ASCENDENTE, NAVEGACIÓN Y COMPLETADO DE PASOS
        ========================================================================== */
-    // Extensión de AppEngine
     AppEngine.toggleTimer = function() {
       if (AppState.timer.isRunning) {
         clearInterval(AppState.timer.timerRef);
@@ -1647,7 +1680,6 @@ const PickerMaster = {
       const display = document.getElementById('timerDisplay');
       display.innerText = timeStr;
 
-      // Virado de Naranja a Verde al alcanzar o superar 30 minutos (1800 seg)
       if (totalSec >= 1800) {
         display.classList.remove('text-[#FEB468]');
         display.classList.add('text-[#89D570]');
@@ -1661,7 +1693,6 @@ const PickerMaster = {
       const interval = parseInt(intervalVal, 10);
       AppState.transSBT.interval = interval;
       
-      // Regeneración de filas de tiempo según intervalo elegido
       const rows = [];
       let maxTime = 30;
       for (let t = 0; t <= maxTime; t += interval) {
@@ -1698,6 +1729,17 @@ const PickerMaster = {
       AppEngine.saveState();
     };
 
+    AppEngine.updateTransVal = function(field, val) {
+      const row = AppState.transSBT.rows[AppState.transSBT.activeIndex];
+      if (row) {
+        row[field] = val;
+        row.isTouched = true;
+        PickerMaster.propagateForward(AppState.transSBT.activeIndex, field, val);
+      }
+      DOMWriter.renderTransSBT();
+      AppEngine.saveState();
+    };
+  
     AppEngine.toggleVasop = function(isCheck) {
       AppState.preSBT.vasop = isCheck;
       AppEngine.saveState();
@@ -1706,27 +1748,27 @@ const PickerMaster = {
     AppEngine.completeStep1 = function() {
       document.getElementById('headerStep1').classList.add('header-completed');
       document.getElementById('badgeStep1').innerText = 'Completado ✓';
-      DOMWriter.toggleAccordion('step1'); // Colapsa Paso 1
+      DOMWriter.toggleAccordion('step1');
       
       const contentStep2 = document.getElementById('contentStep2');
       if (contentStep2 && contentStep2.classList.contains('collapsed')) {
-        DOMWriter.toggleAccordion('step2'); // Despliega Paso 2
+        DOMWriter.toggleAccordion('step2');
       }
     };
 
     AppEngine.completeStep2 = function() {
       document.getElementById('headerStep2').classList.add('header-completed');
       document.getElementById('badgeStep2').innerText = 'Completado ✓';
-      DOMWriter.toggleAccordion('step2'); // Colapsa Paso 2
+      DOMWriter.toggleAccordion('step2');
 
       const contentStep3 = document.getElementById('contentStep3');
       if (contentStep3 && contentStep3.classList.contains('collapsed')) {
-        DOMWriter.toggleAccordion('step3'); // Despliega Paso 3
+        DOMWriter.toggleAccordion('step3');
       }
     };
 
     /* ==========================================================================
-       8. MOTOR EXPORTADOR A FORMATO .CSV (EXPORTER)
+       8. MOTOR EXPORTADOR A FORMATO .CSV COMPLETO (EXPORTER)
        ========================================================================== */
     const Exporter = {
       exportCSV() {
@@ -1736,44 +1778,59 @@ const PickerMaster = {
 
         let csv = "";
 
-        // Fila 1 a 4: Demográficos y Ficha Técnica
+        // Fila 1 y 2: Demográficos Principales
         csv += `Nom,Hosp,Exp,D Hosp,D IOT,D VM,D TQT,,,Dx,,,Comorb,,,,##,,\n`;
         csv += `"${p.nombre}","${p.hosp}","${p.exp}","${p.dHosp}","${p.dVm}","${p.dVm}","${p.dTqt}",,,"${p.dx}",,,"${p.comorb}",,,,"${p.folio}",,\n`;
+        
+        // Fila 3 y 4: Causa Intubación
         csv += `,,,,,,,,,IOT?,,,,,,,,,\n`;
         csv += `,,,,,,,,,"${p.iotReason}",,,,,,,,,\n`;
+        
+        // Fila 5 y 6: Parámetros Antropométricos y Días
         csv += `Edad,Sexo,Talla,Peso,IMC,PBW,TET#,TQT#,D Seda,D BNM,,,,,,,,,\n`;
         csv += `"${p.edad}","${p.sexo}","${p.talla}","${p.peso}","${Calculators.calcIMC(p.peso,p.talla)}","${Calculators.calcPBW(p.talla,p.sexo)}","${p.tet}","${p.tqt}","${p.dSeda}","${p.dBnm}",,,,,,,,,\n`;
+        
+        // Fila 7 y 8: Subgrupo
         csv += `,,,,,,,,,,,,,,,,Sugrupo,,\n`;
         csv += `,,,,,,,,,,,,,,,,"${p.subgrupo}",,\n`;
 
-        // Pre-SBT Checklist y Escalas
+        // Pre-SBT Checklist, Laboratorios y Escalas Clínicas
         csv += `Pre SBT,,,,,,,,,,,,,,,,,\n`;
         csv += `Checklist,Dx Act?,PaFi,SaFi,pH,SvcO2,HD,Vasop,Esp,Hb,Temp,ExPRES,SOFA-2,FOUR,MRC,,,,\n`;
         
         const fourVal = pre.four ? pre.four.total : "";
-        const gcsVal = pre.gcs ? pre.gcs.total : "";
+        const sofaVal = pre.sofa2 !== null && pre.sofa2 !== undefined ? pre.sofa2 : "";
         const mrcVal = pre.mrc ? pre.mrc.total : "";
-        const sofaVal = pre.sofa2 !== null ? pre.sofa2 : "";
         const expresVal = pre.expres ? pre.expres.total : "";
 
         csv += `,"${pre.dxAct?'SI':'NO'}","${pre.paFi||''}","${pre.saFi||''}","${pre.pH}","${pre.svcO2}","${pre.hd?'SI':'NO'}","${pre.vasop?'SI':'NO'}","${pre.esp?'SI':'NO'}","${pre.hb}","${pre.temp}","${expresVal}","${sofaVal}","${fourVal}","${mrcVal}",,,,\n`;
 
-        // Tabla Trans-SBT
+        // Mecánica Pulmonar Basal Pre-SBT
         csv += `Fecha,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,F/I,P0.1,NIF,RSBI,PAM,FC,SpO2\n`;
 
-        // Filas de tiempo (0, 3, 6, 9... 30 min)
+        const bVm = Calculators.calcVM(pre.vTesp, pre.rResp);
+        const bPmus = Calculators.calcPmus(pre.pOcc);
+        const bCdyn = Calculators.calcCdyn(pre.vTesp, pre.pPico, pre.peepBasal);
+        const bLtcdyn = Calculators.calcLTCdyn(pre.rResp, pre.pPico, pre.peepBasal);
+        const bRsbi = Calculators.calcRSBI(pre.rResp, pre.vTesp);
+        const nowStr = new Date().toLocaleTimeString();
+
+        csv += `"${nowStr}","${pre.psBasal}","${pre.peepBasal}","${pre.pPico}","${pre.fiO2}","${pre.rResp}","${pre.vTesp}","${bVm}","${pre.pOcc}","${bPmus}","${bCdyn}","${bLtcdyn}","N/A","${pre.p01}","${pre.nif}","${bRsbi}","${pre.pam}","${pre.fc}","${pre.spO2}"\n`;
+
+        // Sección Trans-SBT
+        csv += `Trans SBT,,,,,,,,,,,,,,,,,\n`;
+        csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,F/I,P0.1,NIF,RSBI,PAM,FC,SpO2\n`;
+
         trans.rows.forEach(r => {
           const vm = Calculators.calcVM(r.vTesp, r.rResp);
           const pmus = Calculators.calcPmus(r.pOcc);
           const cdyn = Calculators.calcCdyn(r.vTesp, r.pPico, trans.peepStatic);
           const ltcdyn = Calculators.calcLTCdyn(r.rResp, r.pPico, trans.peepStatic);
           const rsbi = Calculators.calcRSBI(r.rResp, r.vTesp);
-          const nowStr = new Date().toLocaleTimeString();
 
-          csv += `"${nowStr}","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.fI}","${r.p01}","","${rsbi}","${r.pam}","${r.fc}","${r.spO2}"\n`;
+          csv += `"${r.time}","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.fI}","${r.p01}","","${rsbi}","${r.pam}","${r.fc}","${r.spO2}"\n`;
         });
 
-        // Disparador de Descarga de Archivo
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -1805,12 +1862,11 @@ const PickerMaster = {
     }
 
     /* ==========================================================================
-       10. INICIALIZACIÓN DE LA APLICACIÓN AL Cargar
+       10. INICIALIZACIÓN DE LA APLICACIÓN AL CARGAR
        ========================================================================== */
     window.onload = function() {
       AppEngine.loadState();
       
-      // Si no existen filas de Trans-SBT, inicializar con intervalo por defecto de 3 min
       if (!AppState.transSBT.rows || AppState.transSBT.rows.length === 0) {
         AppEngine.changeInterval(3);
       }
