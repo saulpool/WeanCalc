@@ -51,7 +51,6 @@
       touch-action: manipulation;
     }
 
-    /* Botones Estilo PB-840 */
     .btn-pb {
       background-color: #0269DE;
       color: #FFFFFF;
@@ -69,7 +68,6 @@
       border-color: #FEB468 !important;
     }
 
-    /* Campos de Texto y Dropdowns PB-840 */
     .input-pb {
       background-color: #5D6C87;
       color: #FFFFFF;
@@ -85,7 +83,6 @@
       background-color: #4A576E;
     }
 
-    /* Rodillo / Vertical Picker con CSS Scroll-Snap */
     .picker-container {
       height: 180px;
       overflow-y: scroll;
@@ -120,13 +117,11 @@
       border-bottom: 1px solid #FEB468;
     }
 
-    /* Header e Indicadores de Completado */
     .header-completed {
       background-color: #89D570 !important;
       color: #3D3F4B !important;
     }
 
-    /* Transición para Acordeón */
     .accordion-content {
       max-height: 2500px;
       transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
@@ -138,7 +133,6 @@
       opacity: 0;
     }
 
-    /* Reloj Digital Retro */
     .timer-display {
       font-family: 'Courier New', Courier, monospace;
       letter-spacing: 2px;
@@ -158,6 +152,9 @@
         <div id="folioDisplay" class="bg-[#3D3F4B] border border-[#FEB468] text-[#FEB468] px-3 py-1 rounded font-mono font-bold text-lg">
           001EM
         </div>
+        <button onclick="AppEngine.newSBT()" class="btn-pb px-2 py-1 text-xs bg-[#FEB468] !text-[#3D3F4B] !border-[#FEB468]">
+          ✨ NUEVA SBT
+        </button>
       </div>
 
       <!-- Reloj Cronómetro Ascendente -->
@@ -207,6 +204,16 @@
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
           
           <div>
+            <label class="text-xs text-[#FEB468] font-bold block mb-1">Fecha Realización SBT:</label>
+            <input type="date" id="inpFechaSBT" onchange="AppState.patient.fechaSBT=this.value; AppEngine.saveState();" class="input-pb text-sm font-bold text-[#FEB468]">
+          </div>
+
+          <div>
+            <label class="text-xs text-[#FEB468] font-bold block mb-1">No. Expediente (Búsqueda):</label>
+            <input type="text" id="inpExp" onchange="AppEngine.searchExpediente(this.value)" class="input-pb text-sm border-2 border-[#FEB468]" placeholder="No. Expediente (Enter)">
+          </div>
+
+          <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Nombre Paciente:</label>
             <input type="text" id="inpNombre" onchange="AppState.patient.nombre=this.value; AppEngine.saveState();" class="input-pb text-sm" placeholder="Nombre completo">
           </div>
@@ -214,11 +221,6 @@
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hospital:</label>
             <button type="button" onclick="PickerMaster.open('hosp', 'Hospital', ['HM', 'HZ', 'HU'], AppState.patient.hosp)" id="btnHosp" class="input-pb text-left">HM</button>
-          </div>
-
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Expediente:</label>
-            <input type="text" id="inpExp" onchange="AppState.patient.exp=this.value; AppEngine.saveState();" class="input-pb text-sm" placeholder="No. Expediente">
           </div>
 
           <div>
@@ -337,7 +339,6 @@
 
       <div id="contentStep2" class="accordion-content p-4 space-y-4">
         
-        <!-- Checkboxes de Seguridad Pre-SBT -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#3D3F4B] p-3 rounded border border-[#AEE2FA]">
           <label class="flex items-center space-x-2 text-xs cursor-pointer">
             <input type="checkbox" id="chkDxAct" checked onchange="AppState.preSBT.dxAct=this.checked; AppEngine.saveState();" class="w-4 h-4 accent-[#FEB468]">
@@ -357,7 +358,6 @@
           </label>
         </div>
 
-        <!-- TARJETA DE MECÁNICA VENTILATORIA BASAL PRE-SBT -->
         <div class="bg-[#004FA8] border border-[#FEB468] rounded-lg p-3 shadow-inner space-y-3">
           <div class="text-xs font-bold text-[#FEB468] uppercase border-b border-[#AEE2FA] pb-1">
             Mecánica Pulmonar Basal (Pre-SBT con Soporte Habitual)
@@ -414,7 +414,6 @@
             </div>
           </div>
 
-          <!-- FRANJA DERIVADA DE MECÁNICA BASAL PRE-SBT -->
           <div class="bg-[#3D3F4B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
             <div>VM: <span id="lblBasalVM" class="font-bold text-[#FEB468]">7.2 L/min</span></div>
             <div>Pmus: <span id="lblBasalPmus" class="font-bold text-[#FEB468]">--</span></div>
@@ -426,7 +425,6 @@
           </div>
         </div>
 
-        <!-- Laboratorios Basales y Gasometría con Teclados Numéricos Directos -->
         <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-2">
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">pH Gasométrico:</label>
@@ -454,7 +452,6 @@
           </div>
         </div>
 
-        <!-- Lanzadores de Modales de Escalas Clínicas -->
         <div class="border-t border-[#5D6C87] pt-3">
           <label class="text-xs text-[#AEE2FA] font-bold block mb-2 uppercase">Escalas Clínicas Requeridas Pre-SBT:</label>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
@@ -513,7 +510,6 @@
 
       <div id="contentStep3" class="accordion-content p-4 space-y-4">
         
-        <!-- TARJETA DE CAPTURA EN VIVO (LIVE CAPTURE CARD) -->
         <div class="bg-[#004FA8] border-2 border-[#FEB468] rounded-lg p-3 shadow-inner">
           <div class="flex flex-wrap justify-between items-center border-b border-[#AEE2FA] pb-2 mb-3 gap-2">
             <div class="flex items-center space-x-2">
@@ -533,7 +529,6 @@
             </div>
           </div>
 
-          <!-- Campos de Entrada Medidos Directos con Teclado Numérico Nativo -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-3">
             
             <div>
@@ -598,7 +593,6 @@
 
           </div>
 
-          <!-- FRANJA DE PARÁMETROS CALCULADOS DERIVADOS -->
           <div class="bg-[#3D3F4B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
             <div>VM: <span id="lblDerivedVM" class="font-bold text-[#FEB468]">4.8 L/min</span></div>
             <div>Pmus: <span id="lblDerivedPmus" class="font-bold text-[#FEB468]">0.0 cmH2O</span></div>
@@ -609,7 +603,6 @@
           </div>
         </div>
 
-        <!-- TABLA RESUMEN COMPLETA TRANS-SBT -->
         <div class="overflow-x-auto rounded-lg border border-[#AEE2FA]">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
@@ -635,10 +628,124 @@
                 <th id="thMitr" class="p-2 hidden">Mitr</th>
               </tr>
             </thead>
-            <tbody id="tbodyTransSBT" class="divide-y divide-[#5D6C87] bg-[#3D3F4B] font-mono">
-              <!-- Filas generadas dinámicamente en Javascript -->
-            </tbody>
+            <tbody id="tbodyTransSBT" class="divide-y divide-[#5D6C87] bg-[#3D3F4B] font-mono"></tbody>
           </table>
+        </div>
+
+        <div class="flex justify-end pt-3">
+          <button type="button" onclick="AppEngine.finishSBT()" class="btn-pb px-4 py-2 text-xs bg-[#FEB468] !text-[#3D3F4B] !border-[#FEB468]">
+            🏁 SBT FINALIZADA (PASO 4) ➔
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PASO 4: DESENLACE Y POST-EXTUBACIÓN -->
+    <section id="secStep4" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
+      <div id="headerStep4" onclick="DOMWriter.toggleAccordion('step4')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
+        <div class="flex items-center space-x-2">
+          <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 4</span>
+          <h2 class="font-bold text-white uppercase text-sm md:text-base">Desenlace y Post-Extubación</h2>
+        </div>
+        <span id="badgeStep4" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">Pendiente</span>
+      </div>
+
+      <div id="contentStep4" class="accordion-content p-4 space-y-4">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Fecha Extubación:</label>
+            <input type="date" id="inpFechaExtubacion" onchange="AppState.postSBT.fechaExtubacion=this.value; AppEngine.saveState();" class="input-pb text-sm">
+          </div>
+
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo Retiro VMI (Minutos):</label>
+            <input type="number" inputmode="numeric" id="inpTiempoRetiroMin" onfocus="this.select()" onchange="AppState.postSBT.tiempoRetiroMin=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+          </div>
+
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo Retiro VMI (Horas):</label>
+            <input type="number" inputmode="decimal" step="0.5" id="inpTiempoRetiroHoras" onfocus="this.select()" onchange="AppState.postSBT.tiempoRetiroHoras=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+          </div>
+
+          <div>
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Modalidad Soporte Extubación:</label>
+            <select id="selTipoSoporte" onchange="AppEngine.changeTipoSoporte(this.value)" class="input-pb font-bold text-sm">
+              <option value="Atmosférica" selected>Presión Atmosférica</option>
+              <option value="Positiva">Presión Positiva (VNI / CPAP)</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Panel Dinámico: Soporte Atmosférico vs Positivo -->
+        <div id="panelSoporteAtmos" class="bg-[#004FA8]/60 p-3 rounded border border-[#AEE2FA] space-y-3">
+          <div class="text-xs font-bold text-[#FEB468] uppercase">Dispositivo de Presión Atmosférica</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Dispositivo Disponible:</label>
+              <select id="selDispositivoAtmos" onchange="AppState.postSBT.dispositivoAtmos=this.value; AppEngine.saveState();" class="input-pb">
+                <option value="Puntas Nasales Simples">Puntas Nasales Simples</option>
+                <option value="Mascarilla Simple">Mascarilla Simple</option>
+                <option value="Mascarilla Reservorio">Mascarilla Reservorio</option>
+                <option value="Cánulas de Alto Flujo">Cánulas de Alto Flujo (CNAF)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">FiO2 Suministrada (%):</label>
+              <input type="number" inputmode="numeric" id="inpFiO2Atmos" onfocus="this.select()" onchange="AppState.postSBT.fiO2Extubacion=parseFloat(this.value)||21; AppEngine.saveState();" class="input-pb font-mono" value="21">
+            </div>
+          </div>
+        </div>
+
+        <div id="panelSoportePosit" class="bg-[#004FA8]/60 p-3 rounded border border-[#AEE2FA] space-y-3 hidden">
+          <div class="text-xs font-bold text-[#FEB468] uppercase">Parámetros Presión Positiva (No entran a cálculos)</div>
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Dispositivo:</label>
+              <select id="selDispositivoPosit" onchange="AppState.postSBT.dispositivoPosit=this.value; AppEngine.saveState();" class="input-pb">
+                <option value="CPAP">CPAP</option>
+                <option value="VNI">VNI (BiPAP)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Ps (cmH2O):</label>
+              <input type="number" inputmode="numeric" id="inpPsExtub" onfocus="this.select()" onchange="AppState.postSBT.psExtubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+            </div>
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">PEEP (cmH2O):</label>
+              <input type="number" inputmode="numeric" id="inpPEEPExtub" onfocus="this.select()" onchange="AppState.postSBT.peepExtubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="5">
+            </div>
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">FiO2 (%):</label>
+              <input type="number" inputmode="numeric" id="inpFiO2Extub" onfocus="this.select()" onchange="AppState.postSBT.fiO2Extubacion=parseFloat(this.value)||21; AppEngine.saveState();" class="input-pb font-mono" value="30">
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de Falla de Extubación -->
+        <div class="bg-[#3D3F4B] p-3 rounded border border-[#FEB468] space-y-3">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" id="chkFalla" onchange="AppEngine.toggleFalla(this.checked)" class="w-5 h-5 accent-[#FEB468]">
+            <span class="font-bold text-white text-sm">¿Presentó Falla a la Extubación?</span>
+          </label>
+
+          <div id="panelFallaDetails" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 hidden">
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Horas a la Falla:</label>
+              <input type="number" inputmode="decimal" step="0.5" id="inpHorasFalla" onfocus="this.select()" onchange="AppState.postSBT.horasFalla=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+            </div>
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Razón de la Falla (Causa):</label>
+              <input type="text" id="inpRazonFalla" onchange="AppState.postSBT.razonFalla=this.value; AppEngine.saveState();" class="input-pb text-sm" placeholder="Agotamiento, secreciones, etc.">
+            </div>
+            <div>
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Horas a la Reintubación:</label>
+              <input type="number" inputmode="decimal" step="0.5" id="inpHorasReintubacion" onfocus="this.select()" onchange="AppState.postSBT.horasReintubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+            </div>
+          </div>
         </div>
 
       </div>
@@ -695,8 +802,10 @@
        1. ARBOL DE ESTADO CENTRALIZADO (APP STATE) Y PERSISTENCIA LOCAL
        ========================================================================== */
     const AppState = {
+      registry: {}, // Almacén local de pacientes por Expediente
       counters: { HM: 1, HZ: 1, HU: 1 },
       patient: {
+        fechaSBT: new Date().toISOString().slice(0,10),
         nombre: "", hosp: "HM", exp: "", seqDigits: "001", folio: "001EM",
         fechaHosp: "", dHosp: 0, fechaIOT: "", dVm: 0, fechaTQT: "", dTqt: "N/A",
         dx: "", comorb: "", iotReason: "", edad: 35, sexo: "Masc",
@@ -718,6 +827,21 @@
         peepStatic: 0,
         activeIndex: 0,
         rows: []
+      },
+      postSBT: {
+        fechaExtubacion: new Date().toISOString().slice(0,10),
+        tiempoRetiroMin: 0,
+        tiempoRetiroHoras: 0,
+        tipoSoporte: "Atmosférica",
+        dispositivoAtmos: "Puntas Nasales Simples",
+        dispositivoPosit: "CPAP",
+        psExtubacion: 0,
+        peepExtubacion: 5,
+        fiO2Extubacion: 21,
+        falla: false,
+        horasFalla: 0,
+        razonFalla: "",
+        horasReintubacion: 0
       },
       timer: { elapsedSeconds: 0, isRunning: false, timerRef: null }
     };
@@ -832,6 +956,12 @@
       saveState() {
         try {
           localStorage.setItem('weaning_app_state', JSON.stringify(AppState));
+          // Guardar registro en historial por Expediente si existe
+          if (AppState.patient.exp) {
+            let reg = JSON.parse(localStorage.getItem('weaning_patient_registry') || '{}');
+            reg[AppState.patient.exp] = AppState.patient;
+            localStorage.setItem('weaning_patient_registry', JSON.stringify(reg));
+          }
         } catch(e) { console.error('Error guardando estado', e); }
       },
 
@@ -842,9 +972,79 @@
             const parsed = JSON.parse(saved);
             Object.assign(AppState, parsed);
           }
+          if (!AppState.patient.fechaSBT) AppState.patient.fechaSBT = new Date().toISOString().slice(0,10);
           if (!AppState.preSBT.psBasal) AppState.preSBT.psBasal = 10;
           if (!AppState.preSBT.peepBasal) AppState.preSBT.peepBasal = 5;
+          if (!AppState.postSBT) {
+            AppState.postSBT = {
+              fechaExtubacion: new Date().toISOString().slice(0,10),
+              tiempoRetiroMin: 0, tiempoRetiroHoras: 0, tipoSoporte: "Atmosférica",
+              dispositivoAtmos: "Puntas Nasales Simples", dispositivoPosit: "CPAP",
+              psExtubacion: 0, peepExtubacion: 5, fiO2Extubacion: 21,
+              falla: false, horasFalla: 0, razonFalla: "", horasReintubacion: 0
+            };
+          }
         } catch(e) { console.error('Error cargando estado', e); }
+      },
+
+      // Búsqueda en Memoria Local por No. Expediente
+      searchExpediente(expVal) {
+        AppState.patient.exp = expVal;
+        if (!expVal) return;
+        try {
+          let reg = JSON.parse(localStorage.getItem('weaning_patient_registry') || '{}');
+          if (reg[expVal]) {
+            const match = reg[expVal];
+            Object.assign(AppState.patient, match);
+            AppState.patient.exp = expVal; // Mantener expediente
+            DOMWriter.renderAll();
+            alert(` Paciente encontrado en registro local: ${match.nombre}`);
+          }
+        } catch(e) { console.error(e); }
+        AppEngine.saveState();
+      },
+
+      // Botón "Nueva SBT": Resetea campos a blanco
+      newSBT() {
+        if (confirm("¿Deseas iniciar una Nueva SBT? Se limpiarán los campos actuales.")) {
+          AppEngine.resetTimer();
+          
+          // Incrementar secuencia
+          const curSeq = parseInt(AppState.patient.seqDigits || "1", 10) + 1;
+          const seqStr = String(curSeq).padStart(3, '0');
+
+          AppState.patient = {
+            fechaSBT: new Date().toISOString().slice(0,10),
+            nombre: "", hosp: AppState.patient.hosp || "HM", exp: "", seqDigits: seqStr, folio: "",
+            fechaHosp: "", dHosp: 0, fechaIOT: "", dVm: 0, fechaTQT: "", dTqt: "N/A",
+            dx: "", comorb: "", iotReason: "", edad: 35, sexo: "Masc",
+            talla: 1.60, peso: 70.0, tet: "7.5", tqt: "N/A", dSeda: 0, dBnm: 0,
+            subgrupo: "0/ZEEP"
+          };
+
+          AppState.preSBT = {
+            dxAct: true, hd: true, vasop: false, esp: true,
+            psBasal: 10, peepBasal: 5, pPico: 18, fiO2: 30, rResp: 16, vTesp: 450,
+            pOcc: -10, p01: -1.5, pam: 85, fc: 75, spO2: 98, nif: -25,
+            pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",
+            paFi: null, saFi: null, mitr: "0.0",
+            four: null, gcs: null, mrc: null, sofa2: null, expres: null, visage: null,
+            isComplete: false
+          };
+
+          AppState.postSBT = {
+            fechaExtubacion: new Date().toISOString().slice(0,10),
+            tiempoRetiroMin: 0, tiempoRetiroHoras: 0, tipoSoporte: "Atmosférica",
+            dispositivoAtmos: "Puntas Nasales Simples", dispositivoPosit: "CPAP",
+            psExtubacion: 0, peepExtubacion: 5, fiO2Extubacion: 21,
+            falla: false, horasFalla: 0, razonFalla: "", horasReintubacion: 0
+          };
+
+          AppEngine.changeInterval(AppState.transSBT.interval || 3);
+          AppEngine.updateFolio();
+          DOMWriter.renderAll();
+          AppEngine.saveState();
+        }
       },
 
       calcDays(type, dateStr) {
@@ -887,6 +1087,30 @@
         
         document.getElementById('folioDisplay').innerText = folio;
         document.getElementById('inpFolioFull').value = folio;
+      },
+
+      changeTipoSoporte(val) {
+        AppState.postSBT.tipoSoporte = val;
+        document.getElementById('panelSoporteAtmos').classList.toggle('hidden', val !== 'Atmosférica');
+        document.getElementById('panelSoportePosit').classList.toggle('hidden', val !== 'Positiva');
+        AppEngine.saveState();
+      },
+
+      toggleFalla(isCheck) {
+        AppState.postSBT.falla = isCheck;
+        document.getElementById('panelFallaDetails').classList.toggle('hidden', !isCheck);
+        AppEngine.saveState();
+      },
+
+      finishSBT() {
+        document.getElementById('headerStep3').classList.add('header-completed');
+        document.getElementById('badgeStep3').innerText = 'Completado ✓';
+        DOMWriter.toggleAccordion('step3'); // Colapsa Paso 3
+
+        const contentStep4 = document.getElementById('contentStep4');
+        if (contentStep4 && contentStep4.classList.contains('collapsed')) {
+          DOMWriter.toggleAccordion('step4'); // Despliega Paso 4
+        }
       }
     };
 
@@ -1278,6 +1502,7 @@
 
           const total = ptsPaFi + ptsGCS + ptsPlt + ptsBil + ptsCV + ptsRen;
           AppState.preSBT.sofa2 = total;
+          AppState.preSBT.sofa2Scores = { plt: ptsPlt, bil: ptsBil, cv: ptsCV, ren: ptsRen };
           document.getElementById('scoreSOFA2').innerText = `${total} / 24 pts`;
         }
         else if (this.activeScale === 'ExPreS') {
@@ -1314,17 +1539,29 @@
           else if (total >= 45) prob = "45-58 (88.3% Éxito)";
 
           AppState.preSBT.expres = { total, prob };
+          AppState.preSBT.expresScores = { htc: ptsHtc, cr: ptsCr, neuro: isNeuro ? 'SI' : 'NO' };
           document.getElementById('scoreExPreS').innerText = `${total} pts`;
         }
         else if (this.activeScale === 'Visage') {
           let total = 0;
-          if (document.getElementById('visageEdad').checked) total += 1;
-          if (document.getElementById('visageOcular').checked) total += 1;
-          if (document.getElementById('visageDeglucio').checked) total += 1;
-          if (document.getElementById('visageGCS').checked) total += 1;
+          const isEdad = document.getElementById('visageEdad').checked;
+          const isOcular = document.getElementById('visageOcular').checked;
+          const isDeglucio = document.getElementById('visageDeglucio').checked;
+          const isGcs = document.getElementById('visageGCS').checked;
+
+          if (isEdad) total += 1;
+          if (isOcular) total += 1;
+          if (isDeglucio) total += 1;
+          if (isGcs) total += 1;
 
           const prob = total >= 3 ? "> 90% Éxito" : "< 70% Éxito";
           AppState.preSBT.visage = { total, prob };
+          AppState.preSBT.visageScores = {
+            edad: isEdad ? 1 : 0,
+            ocular: isOcular ? 1 : 0,
+            deglucio: isDeglucio ? 1 : 0,
+            gcs: isGcs ? 1 : 0
+          };
           document.getElementById('scoreVisage').innerText = `${total} / 4 pts`;
         }
 
@@ -1466,10 +1703,12 @@
         this.renderDemographics();
         this.renderPreSBT();
         this.renderTransSBT();
+        this.renderPostSBT();
       },
 
       renderDemographics() {
         const p = AppState.patient;
+        if (document.getElementById('inpFechaSBT')) document.getElementById('inpFechaSBT').value = p.fechaSBT || new Date().toISOString().slice(0,10);
         if (document.getElementById('inpNombre')) document.getElementById('inpNombre').value = p.nombre || '';
         if (document.getElementById('btnHosp')) document.getElementById('btnHosp').innerText = p.hosp;
         if (document.getElementById('inpExp')) document.getElementById('inpExp').value = p.exp || '';
@@ -1642,6 +1881,28 @@
           `;
           tbody.appendChild(tr);
         });
+      },
+
+      renderPostSBT() {
+        const post = AppState.postSBT || {};
+        if (document.getElementById('inpFechaExtubacion')) document.getElementById('inpFechaExtubacion').value = post.fechaExtubacion || new Date().toISOString().slice(0,10);
+        if (document.getElementById('inpTiempoRetiroMin')) document.getElementById('inpTiempoRetiroMin').value = post.tiempoRetiroMin || 0;
+        if (document.getElementById('inpTiempoRetiroHoras')) document.getElementById('inpTiempoRetiroHoras').value = post.tiempoRetiroHoras || 0;
+        if (document.getElementById('selTipoSoporte')) document.getElementById('selTipoSoporte').value = post.tipoSoporte || 'Atmosférica';
+        if (document.getElementById('selDispositivoAtmos')) document.getElementById('selDispositivoAtmos').value = post.dispositivoAtmos || 'Puntas Nasales Simples';
+        if (document.getElementById('selDispositivoPosit')) document.getElementById('selDispositivoPosit').value = post.dispositivoPosit || 'CPAP';
+        if (document.getElementById('inpFiO2Atmos')) document.getElementById('inpFiO2Atmos').value = post.fiO2Extubacion || 21;
+        if (document.getElementById('inpPsExtub')) document.getElementById('inpPsExtub').value = post.psExtubacion || 0;
+        if (document.getElementById('inpPEEPExtub')) document.getElementById('inpPEEPExtub').value = post.peepExtubacion || 5;
+        if (document.getElementById('inpFiO2Extub')) document.getElementById('inpFiO2Extub').value = post.fiO2Extubacion || 30;
+        if (document.getElementById('chkFalla')) document.getElementById('chkFalla').checked = post.falla || false;
+        if (document.getElementById('inpHorasFalla')) document.getElementById('inpHorasFalla').value = post.horasFalla || 0;
+        if (document.getElementById('inpRazonFalla')) document.getElementById('inpRazonFalla').value = post.razonFalla || '';
+        if (document.getElementById('inpHorasReintubacion')) document.getElementById('inpHorasReintubacion').value = post.horasReintubacion || 0;
+
+        document.getElementById('panelSoporteAtmos').classList.toggle('hidden', post.tipoSoporte !== 'Atmosférica');
+        document.getElementById('panelSoportePosit').classList.toggle('hidden', post.tipoSoporte !== 'Positiva');
+        document.getElementById('panelFallaDetails').classList.toggle('hidden', !post.falla);
       }
     };
 
@@ -1768,58 +2029,66 @@
     };
 
     /* ==========================================================================
-       8. MOTOR EXPORTADOR A FORMATO .CSV COMPLETO (EXPORTER)
+       8. MOTOR EXPORTADOR A FORMATO .CSV HORIZONTAL Y DESGLOSADO CON PASO 4
        ========================================================================== */
     const Exporter = {
       exportCSV() {
         const p = AppState.patient;
         const pre = AppState.preSBT;
         const trans = AppState.transSBT;
+        const post = AppState.postSBT || {};
 
         let csv = "";
 
-        // Fila 1 y 2: Demográficos Principales
-        csv += `Nom,Hosp,Exp,D Hosp,D IOT,D VM,D TQT,,,Dx,,,Comorb,,,,##,,\n`;
-        csv += `"${p.nombre}","${p.hosp}","${p.exp}","${p.dHosp}","${p.dVm}","${p.dVm}","${p.dTqt}",,,"${p.dx}",,,"${p.comorb}",,,,"${p.folio}",,\n`;
-        
-        // Fila 3 y 4: Causa Intubación
-        csv += `,,,,,,,,,IOT?,,,,,,,,,\n`;
-        csv += `,,,,,,,,,"${p.iotReason}",,,,,,,,,\n`;
-        
-        // Fila 5 y 6: Parámetros Antropométricos y Días
-        csv += `Edad,Sexo,Talla,Peso,IMC,PBW,TET#,TQT#,D Seda,D BNM,,,,,,,,,\n`;
-        csv += `"${p.edad}","${p.sexo}","${p.talla}","${p.peso}","${Calculators.calcIMC(p.peso,p.talla)}","${Calculators.calcPBW(p.talla,p.sexo)}","${p.tet}","${p.tqt}","${p.dSeda}","${p.dBnm}",,,,,,,,,\n`;
-        
-        // Fila 7 y 8: Subgrupo
-        csv += `,,,,,,,,,,,,,,,,Sugrupo,,\n`;
-        csv += `,,,,,,,,,,,,,,,,"${p.subgrupo}",,\n`;
+        // --- FILA HORIZONTAL ÚNICA PARA APILADO EN GOOGLE SHEETS (PASOS 1, 2 Y 4) ---
+        csv += `Fecha_SBT,Folio,Nombre,Hosp,Exp,Fecha_Hosp,D_Hosp,Fecha_IOT,D_VM,Fecha_TQT,D_TQT,Dx,Comorb,IOT_Reason,Edad,Sexo,Talla,Peso,IMC,PBW,TET,TQT,D_Seda,D_BNM,Subgrupo,` +
+               `Dx_Act,HD,Vasop,Esp,Ps_Basal,PEEP_Basal,Ppico_Basal,FiO2_Basal,RResp_Basal,VTesp_Basal,VM_Basal,Pocc_Basal,Pmus_Basal,Cdyn_Basal,LTCdyn_Basal,P01_Basal,NIF_Basal,RSBI_Basal,PAM_Basal,FC_Basal,SpO2_Basal,` +
+               `pH,PaO2,SvcO2,Hb,Htc,Temp,SaFi_Basal,PaFi_Basal,` +
+               `FOUR_Total,FOUR_O,FOUR_M,FOUR_B,FOUR_R,` +
+               `GCS_Total,GCS_O,GCS_V,GCS_M,` +
+               `MRC_Total,` +
+               `SOFA2_Total,SOFA2_Plt,SOFA2_BilT,SOFA2_CVSupp,SOFA2_Ren,` +
+               `ExPreS_Total,ExPreS_Htc,ExPreS_Cr,ExPreS_Neuro,ExPreS_Prob,` +
+               `Visage_Total,Visage_Edad,Visage_Ocular,Visage_Deglucio,Visage_GCS,Visage_Prob,` +
+               `Fecha_Extubacion,Tiempo_Retiro_Min,Tiempo_Retiro_Horas,Tipo_Soporte_Extub,Dispositivo_Extub,Ps_Extub,PEEP_Extub,FiO2_Extub,Falla_Extub,Horas_Falla,Razon_Falla,Horas_Reintubacion\n`;
 
-        // Pre-SBT Checklist, Laboratorios y Escalas Clínicas
-        csv += `Pre SBT,,,,,,,,,,,,,,,,,\n`;
-        csv += `Checklist,Dx Act?,PaFi,SaFi,pH,SvcO2,HD,Vasop,Esp,Hb,Temp,ExPRES,SOFA-2,FOUR,MRC,,,,\n`;
+        const f = pre.four || { total: "", o: "", m: "", b: "", r: "" };
+        const g = pre.gcs || { total: "", o: "", v: "", m: "" };
+        const mrcTot = pre.mrc ? pre.mrc.total : "";
         
-        const fourVal = pre.four ? pre.four.total : "";
-        const sofaVal = pre.sofa2 !== null && pre.sofa2 !== undefined ? pre.sofa2 : "";
-        const mrcVal = pre.mrc ? pre.mrc.total : "";
-        const expresVal = pre.expres ? pre.expres.total : "";
+        const sofaTot = pre.sofa2 !== null && pre.sofa2 !== undefined ? pre.sofa2 : "";
+        const sofaSub = pre.sofa2Scores || { plt: "", bil: "", cv: "", ren: "" };
 
-        csv += `,"${pre.dxAct?'SI':'NO'}","${pre.paFi||''}","${pre.saFi||''}","${pre.pH}","${pre.svcO2}","${pre.hd?'SI':'NO'}","${pre.vasop?'SI':'NO'}","${pre.esp?'SI':'NO'}","${pre.hb}","${pre.temp}","${expresVal}","${sofaVal}","${fourVal}","${mrcVal}",,,,\n`;
+        const exTot = pre.expres ? pre.expres.total : "";
+        const exProb = pre.expres ? pre.expres.prob : "";
+        const exSub = pre.expresScores || { htc: "", cr: "", neuro: "" };
 
-        // Mecánica Pulmonar Basal Pre-SBT
-        csv += `Fecha,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,F/I,P0.1,NIF,RSBI,PAM,FC,SpO2\n`;
+        const visTot = pre.visage ? pre.visage.total : "";
+        const visProb = pre.visage ? pre.visage.prob : "";
+        const visSub = pre.visageScores || { edad: "", ocular: "", deglucio: "", gcs: "" };
 
         const bVm = Calculators.calcVM(pre.vTesp, pre.rResp);
         const bPmus = Calculators.calcPmus(pre.pOcc);
         const bCdyn = Calculators.calcCdyn(pre.vTesp, pre.pPico, pre.peepBasal);
         const bLtcdyn = Calculators.calcLTCdyn(pre.rResp, pre.pPico, pre.peepBasal);
         const bRsbi = Calculators.calcRSBI(pre.rResp, pre.vTesp);
-        const nowStr = new Date().toLocaleTimeString();
 
-        csv += `"${nowStr}","${pre.psBasal}","${pre.peepBasal}","${pre.pPico}","${pre.fiO2}","${pre.rResp}","${pre.vTesp}","${bVm}","${pre.pOcc}","${bPmus}","${bCdyn}","${bLtcdyn}","N/A","${pre.p01}","${pre.nif}","${bRsbi}","${pre.pam}","${pre.fc}","${pre.spO2}"\n`;
+        const dispositivoFinal = post.tipoSoporte === 'Atmosférica' ? post.dispositivoAtmos : post.dispositivoPosit;
 
-        // Sección Trans-SBT
-        csv += `Trans SBT,,,,,,,,,,,,,,,,,\n`;
-        csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,F/I,P0.1,NIF,RSBI,PAM,FC,SpO2\n`;
+        csv += `"${p.fechaSBT}","${p.folio}","${p.nombre}","${p.hosp}","${p.exp}","${p.fechaHosp}","${p.dHosp}","${p.fechaIOT}","${p.dVm}","${p.fechaTQT}","${p.dTqt}","${p.dx}","${p.comorb}","${p.iotReason}","${p.edad}","${p.sexo}","${p.talla}","${p.peso}","${Calculators.calcIMC(p.peso,p.talla)}","${Calculators.calcPBW(p.talla,p.sexo)}","${p.tet}","${p.tqt}","${p.dSeda}","${p.dBnm}","${p.subgrupo}",` +
+               `"${pre.dxAct?'SI':'NO'}","${pre.hd?'SI':'NO'}","${pre.vasop?'SI':'NO'}","${pre.esp?'SI':'NO'}","${pre.psBasal}","${pre.peepBasal}","${pre.pPico}","${pre.fiO2}","${pre.rResp}","${pre.vTesp}","${bVm}","${pre.pOcc}","${bPmus}","${bCdyn}","${bLtcdyn}","${pre.p01}","${pre.nif}","${bRsbi}","${pre.pam}","${pre.fc}","${pre.spO2}",` +
+               `"${pre.pH}","${pre.paO2||''}","${pre.svcO2}","${pre.hb}","${pre.htc}","${pre.temp}","${pre.saFi||''}","${pre.paFi||''}",` +
+               `"${f.total}","${f.o}","${f.m}","${f.b}","${f.r}",` +
+               `"${g.total}","${g.o}","${g.v}","${g.m}",` +
+               `"${mrcTot}",` +
+               `"${sofaTot}","${sofaSub.plt}","${sofaSub.bil}","${sofaSub.cv}","${sofaSub.ren}",` +
+               `"${exTot}","${exSub.htc}","${exSub.cr}","${exSub.neuro}","${exProb}",` +
+               `"${visTot}","${visSub.edad}","${visSub.ocular}","${visSub.deglucio}","${visSub.gcs}","${visProb}",` +
+               `"${post.fechaExtubacion}","${post.tiempoRetiroMin}","${post.tiempoRetiroHoras}","${post.tipoSoporte}","${dispositivoFinal}","${post.psExtubacion}","${post.peepExtubacion}","${post.fiO2Extubacion}","${post.falla?'SI':'NO'}","${post.horasFalla}","${post.razonFalla}","${post.horasReintubacion}"\n\n`;
+
+        // --- TABLA VERTICAL INDIVIDUAL PASO 3 (TRANS-SBT TENDENCIAS) ---
+        csv += `[MONITOREO TRANS-SBT TENDENCIA INDIVIDUAL]\n`;
+        csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,F/I,P0.1,RSBI,PAM,FC,SpO2,Mitr\n`;
 
         trans.rows.forEach(r => {
           const vm = Calculators.calcVM(r.vTesp, r.rResp);
@@ -1828,14 +2097,14 @@
           const ltcdyn = Calculators.calcLTCdyn(r.rResp, r.pPico, trans.peepStatic);
           const rsbi = Calculators.calcRSBI(r.rResp, r.vTesp);
 
-          csv += `"${r.time}","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.fI}","${r.p01}","","${rsbi}","${r.pam}","${r.fc}","${r.spO2}"\n`;
+          csv += `"${r.time} min","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.fI}","${r.p01}","${rsbi}","${r.pam}","${r.fc}","${r.spO2}","${r.mitr||'N/A'}"\n`;
         });
 
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `Weaning_${p.folio}_${new Date().toISOString().slice(0,10)}.csv`;
+        a.download = `Weaning_${p.folio}_SBT_${p.fechaSBT}.csv`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
