@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-[#3D3F4B]">
+<html lang="es" class="h-full bg-[#181E2B]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,9 +23,9 @@
         extend: {
           colors: {
             pbSky: '#AEE2FA',
-            pbGray: '#5D6C87',
+            pbGray: '#2C3647',
             pbOrange: '#FEB468',
-            pbNavy: '#3D3F4B',
+            pbNavy: '#181E2B',
             pbKingBlue: '#0269DE',
             pbGreen: '#89D570',
             pbDarkBlue: '#004FA8',
@@ -41,16 +41,15 @@
   </script>
 
   <style>
-    /* Estilos Retro Puritan-Bennett 840 */
+    /* Estilos Retro Puritan-Bennett 840 Optimizado Desktop/Tablet */
     html, body {
-      background-color: #3D3F4B !important;
+      background-color: #181E2B !important; /* Azul Marino Muy Oscuro */
       color: #FFFFFF;
       font-family: system-ui, -apple-system, sans-serif;
-      user-select: none;
-      -webkit-user-select: none;
       touch-action: manipulation;
     }
 
+    /* Botones Estilo PB-840 */
     .btn-pb {
       background-color: #0269DE;
       color: #FFFFFF;
@@ -64,13 +63,14 @@
 
     .btn-pb:active, .btn-pb.active {
       background-color: #FEB468 !important;
-      color: #3D3F4B !important;
+      color: #181E2B !important;
       border-color: #FEB468 !important;
     }
 
+    /* Campos de Texto, Selecciones y Inputs PB-840 Gris Oscuro */
     .input-pb {
-      background-color: #5D6C87;
-      color: #FFFFFF;
+      background-color: #2C3647 !important; /* Gris Oscuro */
+      color: #FFFFFF !important;
       border: 1px solid #AEE2FA;
       border-radius: 4px;
       padding: 0.5rem;
@@ -80,48 +80,16 @@
 
     .input-pb:focus {
       outline: 2px solid #FEB468;
-      background-color: #4A576E;
+      background-color: #3A475C !important;
     }
 
-    .picker-container {
-      height: 180px;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .picker-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .picker-item {
-      height: 45px;
-      scroll-snap-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #AEE2FA;
-      opacity: 0.5;
-      transition: all 0.2s;
-    }
-
-    .picker-item.selected {
-      color: #FEB468;
-      opacity: 1;
-      font-size: 1.6rem;
-      background-color: rgba(2, 105, 222, 0.2);
-      border-top: 1px solid #FEB468;
-      border-bottom: 1px solid #FEB468;
-    }
-
+    /* Header e Indicadores de Completado */
     .header-completed {
       background-color: #89D570 !important;
-      color: #3D3F4B !important;
+      color: #181E2B !important;
     }
 
+    /* Transición para Acordeón */
     .accordion-content {
       max-height: 2500px;
       transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
@@ -133,6 +101,7 @@
       opacity: 0;
     }
 
+    /* Reloj Digital Retro */
     .timer-display {
       font-family: 'Courier New', Courier, monospace;
       letter-spacing: 2px;
@@ -149,16 +118,16 @@
       <!-- Folio e Identificador -->
       <div class="flex items-center space-x-2">
         <span class="text-xs uppercase text-[#AEE2FA] font-bold">FOLIO:</span>
-        <div id="folioDisplay" class="bg-[#3D3F4B] border border-[#FEB468] text-[#FEB468] px-3 py-1 rounded font-mono font-bold text-lg">
+        <div id="folioDisplay" class="bg-[#181E2B] border border-[#FEB468] text-[#FEB468] px-3 py-1 rounded font-mono font-bold text-lg">
           001EM
         </div>
-        <button onclick="AppEngine.newSBT()" class="btn-pb px-2 py-1 text-xs bg-[#FEB468] !text-[#3D3F4B] !border-[#FEB468]">
+        <button onclick="AppEngine.newSBT()" class="btn-pb px-2 py-1 text-xs bg-[#FEB468] !text-[#181E2B] !border-[#FEB468]">
           ✨ NUEVA SBT
         </button>
       </div>
 
       <!-- Reloj Cronómetro Ascendente -->
-      <div class="flex items-center space-x-3 bg-[#3D3F4B] px-3 py-1 rounded border border-[#AEE2FA]">
+      <div class="flex items-center space-x-3 bg-[#181E2B] px-3 py-1 rounded border border-[#AEE2FA]">
         <span class="text-xs text-[#AEE2FA] font-bold">TRANS-SBT:</span>
         <div id="timerDisplay" class="timer-display text-[#FEB468] text-2xl font-bold">
           00:00
@@ -173,7 +142,7 @@
       <div class="flex items-center space-x-2">
         <div class="flex flex-col text-right">
           <label for="intervalSelect" class="text-[10px] text-[#AEE2FA] uppercase font-bold">INTERVALO:</label>
-          <select id="intervalSelect" onchange="AppEngine.changeInterval(this.value)" class="bg-[#5D6C87] text-white text-xs rounded border border-[#AEE2FA] px-1 py-0.5">
+          <select id="intervalSelect" onchange="AppEngine.changeInterval(this.value)" class="input-pb text-xs !p-1">
             <option value="3" selected>Cada 3 min</option>
             <option value="4">Cada 4 min</option>
             <option value="5">Cada 5 min</option>
@@ -191,13 +160,13 @@
   <main class="flex-1 overflow-y-auto p-3 max-w-7xl w-full mx-auto space-y-4 pb-24">
 
     <!-- PASO 1: FICHA DEL PACIENTE (DEMOGRÁFICOS) -->
-    <section id="secStep1" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
+    <section id="secStep1" class="bg-[#181E2B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep1" onclick="DOMWriter.toggleAccordion('step1')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 1</span>
           <h2 class="font-bold text-white uppercase text-sm md:text-base">Ficha del Paciente y Demográficos</h2>
         </div>
-        <span id="badgeStep1" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">Pendiente</span>
+        <span id="badgeStep1" class="text-xs px-2 py-1 rounded bg-[#2C3647] text-white">Pendiente</span>
       </div>
 
       <div id="contentStep1" class="accordion-content p-4 space-y-4">
@@ -220,14 +189,18 @@
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hospital:</label>
-            <button type="button" onclick="PickerMaster.open('hosp', 'Hospital', ['HM', 'HZ', 'HU'], AppState.patient.hosp)" id="btnHosp" class="input-pb text-left">HM</button>
+            <select id="selHosp" onchange="AppState.patient.hosp=this.value; AppEngine.updateFolio(); AppEngine.saveState();" class="input-pb text-sm">
+              <option value="HM" selected>HM</option>
+              <option value="HZ">HZ</option>
+              <option value="HU">HU</option>
+            </select>
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Folio Consecutivo:</label>
             <div class="flex space-x-1">
-              <button type="button" onclick="PickerMaster.open('seqDigits', 'No. Secuencia', Array.from({length:100},(_,i)=>String(i+1).padStart(3,'0')), AppState.patient.seqDigits)" id="btnSeqDigits" class="input-pb w-24 text-center font-mono">001</button>
-              <input type="text" id="inpFolioFull" readonly class="input-pb text-center font-bold text-[#FEB468] bg-[#3D3F4B]" value="001EM">
+              <input type="number" min="1" step="1" inputmode="numeric" id="inpSeqDigits" onfocus="this.select()" onchange="AppEngine.handleSeqDigitsChange(this.value)" class="input-pb font-mono w-28 text-center" value="001">
+              <input type="text" id="inpFolioFull" readonly class="input-pb text-center font-bold text-[#FEB468] bg-[#181E2B]" value="001EM">
             </div>
           </div>
 
@@ -266,47 +239,64 @@
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Edad (Años):</label>
-            <input type="number" inputmode="numeric" id="inpEdad" onfocus="this.select()" onchange="AppState.patient.edad=parseFloat(this.value)||18; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="35">
+            <input type="number" min="18" max="100" step="1" inputmode="numeric" id="inpEdad" onfocus="this.select()" onchange="AppState.patient.edad=parseFloat(this.value)||18; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="35">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Sexo Biológico:</label>
-            <button type="button" onclick="PickerMaster.open('sexo', 'Sexo', ['Masc', 'Fem'], AppState.patient.sexo)" id="btnSexo" class="input-pb text-left">Masc</button>
+            <select id="selSexo" onchange="AppState.patient.sexo=this.value; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb text-sm">
+              <option value="Masc" selected>Masc</option>
+              <option value="Fem">Fem</option>
+            </select>
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Talla (m):</label>
-            <input type="number" inputmode="decimal" step="0.01" id="inpTalla" onfocus="this.select()" onchange="AppState.patient.talla=parseFloat(this.value)||1.60; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="1.60">
+            <input type="number" min="1.40" max="2.20" step="0.01" inputmode="decimal" id="inpTalla" onfocus="this.select()" onchange="AppState.patient.talla=parseFloat(this.value)||1.60; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="1.60">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Peso Actual (kg):</label>
-            <input type="number" inputmode="decimal" step="0.5" id="inpPeso" onfocus="this.select()" onchange="AppState.patient.peso=parseFloat(this.value)||70.0; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="70.0">
+            <input type="number" min="25" max="200" step="0.5" inputmode="decimal" id="inpPeso" onfocus="this.select()" onchange="AppState.patient.peso=parseFloat(this.value)||70.0; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb font-mono" value="70.0">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Calibre TET (#):</label>
-            <button type="button" onclick="PickerMaster.open('tet', 'Calibre TET', ['N/A', ...Array.from({length:10},(_,i)=>(5.5 + i*0.5).toFixed(1))], AppState.patient.tet)" id="btnTET" class="input-pb text-left">7.5</button>
+            <select id="selTET" onchange="AppState.patient.tet=this.value; AppEngine.updateFolio(); AppEngine.saveState();" class="input-pb text-sm">
+              <option value="N/A">N/A</option>
+              <option value="5.5">5.5</option><option value="6.0">6.0</option><option value="6.5">6.5</option>
+              <option value="7.0">7.0</option><option value="7.5" selected>7.5</option><option value="8.0">8.0</option>
+              <option value="8.5">8.5</option><option value="9.0">9.0</option><option value="9.5">9.5</option><option value="10.0">10.0</option>
+            </select>
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Calibre TQT (#):</label>
-            <button type="button" onclick="PickerMaster.open('tqt', 'Calibre TQT', ['N/A', ...Array.from({length:8},(_,i)=>(6.0 + i*0.5).toFixed(1))], AppState.patient.tqt)" id="btnTQT" class="input-pb text-left">N/A</button>
+            <select id="selTQT" onchange="AppState.patient.tqt=this.value; AppEngine.updateFolio(); AppEngine.saveState();" class="input-pb text-sm">
+              <option value="N/A" selected>N/A</option>
+              <option value="6.0">6.0</option><option value="6.5">6.5</option><option value="7.0">7.0</option>
+              <option value="7.5">7.5</option><option value="8.0">8.0</option><option value="8.5">8.5</option>
+              <option value="9.0">9.0</option><option value="9.5">9.5</option>
+            </select>
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Días Sedación:</label>
-            <input type="number" inputmode="numeric" id="inpDSeda" onfocus="this.select()" onchange="AppState.patient.dSeda=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+            <input type="number" min="0" max="90" step="1" inputmode="numeric" id="inpDSeda" onfocus="this.select()" onchange="AppState.patient.dSeda=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Días BNM:</label>
-            <input type="number" inputmode="numeric" id="inpDBnm" onfocus="this.select()" onchange="AppState.patient.dBnm=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+            <input type="number" min="0" max="90" step="1" inputmode="numeric" id="inpDBnm" onfocus="this.select()" onchange="AppState.patient.dBnm=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
           </div>
 
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Subgrupo Prototipo:</label>
-            <button type="button" onclick="PickerMaster.open('subgrupo', 'Subgrupo', ['0/ZEEP', 'PSV+', 'Card'], AppState.patient.subgrupo)" id="btnSubgrupo" class="input-pb text-left">0/ZEEP</button>
+            <select id="selSubgrupo" onchange="AppState.patient.subgrupo=this.value; DOMWriter.renderDemographics(); AppEngine.saveState();" class="input-pb text-sm font-bold">
+              <option value="0/ZEEP" selected>0/ZEEP</option>
+              <option value="PSV+">PSV+</option>
+              <option value="Card">Card</option>
+            </select>
           </div>
 
         </div>
@@ -314,7 +304,7 @@
         <div class="bg-[#004FA8] p-3 rounded border border-[#AEE2FA] flex flex-wrap justify-around items-center gap-2">
           <div class="text-center">
             <span class="text-[10px] text-[#AEE2FA] uppercase block">IMC Calculado:</span>
-            <span id="lblIMC" class="font-bold text-base text-[#FEB468]">27.3 kg/m²</span>
+            <span id="lblIMC" class="font-bold text-base text-[#FEB468]">27.3</span>
           </div>
           <div class="text-center">
             <span class="text-[10px] text-[#AEE2FA] uppercase block">Peso Predicho (PBW):</span>
@@ -328,18 +318,18 @@
     </section>
 
     <!-- PASO 2: EVALUACIÓN PRE-SBT Y ESCALAS -->
-    <section id="secStep2" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
+    <section id="secStep2" class="bg-[#181E2B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep2" onclick="DOMWriter.toggleAccordion('step2')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 2</span>
           <h2 class="font-bold text-white uppercase text-sm md:text-base">Checklist Pre-SBT, Gasometría y Escalas</h2>
         </div>
-        <span id="badgeStep2" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">Incompleto</span>
+        <span id="badgeStep2" class="text-xs px-2 py-1 rounded bg-[#2C3647] text-white">Incompleto</span>
       </div>
 
       <div id="contentStep2" class="accordion-content p-4 space-y-4">
         
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#3D3F4B] p-3 rounded border border-[#AEE2FA]">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#181E2B] p-3 rounded border border-[#AEE2FA]">
           <label class="flex items-center space-x-2 text-xs cursor-pointer">
             <input type="checkbox" id="chkDxAct" checked onchange="AppState.preSBT.dxAct=this.checked; AppEngine.saveState();" class="w-4 h-4 accent-[#FEB468]">
             <span>Dx Causa Activo?</span>
@@ -358,6 +348,7 @@
           </label>
         </div>
 
+        <!-- TARJETA DE MECÁNICA VENTILATORIA BASAL PRE-SBT -->
         <div class="bg-[#004FA8] border border-[#FEB468] rounded-lg p-3 shadow-inner space-y-3">
           <div class="text-xs font-bold text-[#FEB468] uppercase border-b border-[#AEE2FA] pb-1">
             Mecánica Pulmonar Basal (Pre-SBT con Soporte Habitual)
@@ -366,35 +357,35 @@
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Ps Basal (cmH2O):</label>
-              <input type="number" inputmode="numeric" id="inpPsBasal" onfocus="this.select()" onchange="AppState.preSBT.psBasal=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="10">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpPsBasal" onfocus="this.select()" onchange="AppState.preSBT.psBasal=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="10">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">PEEP Basal (cmH2O):</label>
-              <input type="number" inputmode="numeric" id="inpPEEPBasal" onfocus="this.select()" onchange="AppState.preSBT.peepBasal=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="5">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpPEEPBasal" onfocus="this.select()" onchange="AppState.preSBT.peepBasal=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="5">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Ppico Basal (cmH2O):</label>
-              <input type="number" inputmode="numeric" id="inpPpicoBasal" onfocus="this.select()" onchange="AppState.preSBT.pPico=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="18">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpPpicoBasal" onfocus="this.select()" onchange="AppState.preSBT.pPico=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="18">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">FiO2 Basal (%):</label>
-              <input type="number" inputmode="numeric" id="inpFiO2Basal" onfocus="this.select()" onchange="AppState.preSBT.fiO2=parseFloat(this.value)||21; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="30">
+              <input type="number" min="21" max="100" step="1" inputmode="numeric" id="inpFiO2Basal" onfocus="this.select()" onchange="AppState.preSBT.fiO2=Math.min(100,Math.max(21,parseFloat(this.value)||21)); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="30">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">RResp Basal (rpm):</label>
-              <input type="number" inputmode="numeric" id="inpRRespBasal" onfocus="this.select()" onchange="AppState.preSBT.rResp=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="16">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpRRespBasal" onfocus="this.select()" onchange="AppState.preSBT.rResp=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="16">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">VTesp Basal (mL):</label>
-              <input type="number" inputmode="numeric" id="inpVTespBasal" onfocus="this.select()" onchange="AppState.preSBT.vTesp=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="450">
+              <input type="number" min="0" step="10" inputmode="numeric" id="inpVTespBasal" onfocus="this.select()" onchange="AppState.preSBT.vTesp=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="450">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Pocc Basal (-cmH2O):</label>
-              <input type="number" inputmode="decimal" id="inpPoccBasal" onfocus="this.select()" onchange="AppState.preSBT.pOcc=-Math.abs(parseFloat(this.value)||0); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="-10">
+              <input type="number" step="0.1" inputmode="decimal" id="inpPoccBasal" onfocus="this.select()" onchange="AppState.preSBT.pOcc=-Math.abs(parseFloat(this.value)||0); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="-10.0">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">P0.1 Basal (-cmH2O):</label>
-              <input type="number" inputmode="decimal" step="0.1" id="inpP01Basal" onfocus="this.select()" onchange="AppState.preSBT.p01=-Math.abs(parseFloat(this.value)||0); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="-1.5">
+              <input type="number" step="0.1" inputmode="decimal" id="inpP01Basal" onfocus="this.select()" onchange="AppState.preSBT.p01=-Math.abs(parseFloat(this.value)||0); DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="-1.5">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">PAM / (PAS/PAD):</label>
@@ -402,19 +393,19 @@
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">FC Basal (lpm):</label>
-              <input type="number" inputmode="numeric" id="inpFCBasal" onfocus="this.select()" onchange="AppState.preSBT.fc=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="75">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpFCBasal" onfocus="this.select()" onchange="AppState.preSBT.fc=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="75">
             </div>
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">SpO2 Basal (%):</label>
-              <input type="number" inputmode="numeric" id="inpSpO2Basal" onfocus="this.select()" onchange="AppState.preSBT.spO2=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="98">
+              <input type="number" min="0" max="100" step="1" inputmode="numeric" id="inpSpO2Basal" onfocus="this.select()" onchange="AppState.preSBT.spO2=parseFloat(this.value)||0; DOMWriter.renderPreSBT();" class="input-pb font-mono font-bold" value="98">
             </div>
             <div>
               <label class="text-[10px] text-[#FEB468] font-bold block">NIF Pre-SBT (-cmH2O):</label>
-              <input type="number" inputmode="decimal" id="inpNIFBasal" onfocus="this.select()" onchange="AppState.preSBT.nif=-Math.abs(parseFloat(this.value)||0);" class="input-pb font-mono font-bold text-[#FEB468]" value="-25">
+              <input type="number" step="0.1" inputmode="decimal" id="inpNIFBasal" onfocus="this.select()" onchange="AppState.preSBT.nif=-Math.abs(parseFloat(this.value)||0);" class="input-pb font-mono font-bold text-[#FEB468]" value="-25.0">
             </div>
           </div>
 
-          <div class="bg-[#3D3F4B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
+          <div class="bg-[#181E2B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
             <div>VM: <span id="lblBasalVM" class="font-bold text-[#FEB468]">7.2 L/min</span></div>
             <div>Pmus: <span id="lblBasalPmus" class="font-bold text-[#FEB468]">--</span></div>
             <div>Cdyn: <span id="lblBasalCdyn" class="font-bold text-[#FEB468]">--</span></div>
@@ -425,34 +416,32 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-2">
+        <!-- Laboratorios Basales y Gasometría -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">pH Gasométrico:</label>
-            <input type="number" inputmode="decimal" step="0.01" id="inpPH" onfocus="this.select()" onchange="AppState.preSBT.pH=this.value; AppEngine.saveState();" class="input-pb font-mono" value="7.40">
+            <input type="number" min="6.90" max="7.80" step="0.01" inputmode="decimal" id="inpPH" onfocus="this.select()" onchange="AppState.preSBT.pH=this.value; DOMWriter.renderPreSBT(); AppEngine.saveState();" class="input-pb font-mono" value="7.40">
           </div>
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">PaO2 (mmHg):</label>
-            <input type="number" inputmode="numeric" id="inpPaO2" onfocus="this.select()" placeholder="Omitir / SaFi" onchange="AppState.preSBT.paO2=parseFloat(this.value)||null; DOMWriter.renderPreSBT();" class="input-pb font-mono">
+            <input type="number" min="0" step="1" inputmode="numeric" id="inpPaO2" onfocus="this.select()" placeholder="Omitir / SaFi" onchange="AppState.preSBT.paO2=parseFloat(this.value)||null; DOMWriter.renderPreSBT(); AppEngine.saveState();" class="input-pb font-mono">
           </div>
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">SvcO2 (%):</label>
-            <input type="number" inputmode="numeric" id="inpSvcO2" onfocus="this.select()" onchange="AppState.preSBT.svcO2=this.value; AppEngine.saveState();" class="input-pb font-mono" value="70">
-          </div>
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hemoglobina (g/dL):</label>
-            <input type="number" inputmode="decimal" step="0.1" id="inpHb" onfocus="this.select()" onchange="AppState.preSBT.hb=this.value; AppEngine.saveState();" class="input-pb font-mono" value="12.0">
+            <input type="number" min="0" max="100" step="1" inputmode="numeric" id="inpSvcO2" onfocus="this.select()" onchange="AppState.preSBT.svcO2=this.value; DOMWriter.renderPreSBT(); AppEngine.saveState();" class="input-pb font-mono" value="70">
           </div>
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Hematocrito (%):</label>
-            <input type="number" inputmode="numeric" id="inpHtc" onfocus="this.select()" onchange="AppState.preSBT.htc=this.value; AppEngine.saveState();" class="input-pb font-mono" value="36">
+            <input type="number" min="10" max="60" step="1" inputmode="numeric" id="inpHtc" onfocus="this.select()" onchange="AppState.preSBT.htc=this.value; DOMWriter.renderPreSBT(); AppEngine.saveState();" class="input-pb font-mono" value="36">
           </div>
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Temperatura (°C):</label>
-            <input type="number" inputmode="decimal" step="0.1" id="inpTemp" onfocus="this.select()" onchange="AppState.preSBT.temp=this.value; AppEngine.saveState();" class="input-pb font-mono" value="36.5">
+            <input type="number" min="30" max="42" step="0.1" inputmode="decimal" id="inpTemp" onfocus="this.select()" onchange="AppState.preSBT.temp=this.value; DOMWriter.renderPreSBT(); AppEngine.saveState();" class="input-pb font-mono" value="36.5">
           </div>
         </div>
 
-        <div class="border-t border-[#5D6C87] pt-3">
+        <!-- Lanzadores de Modales de Escalas Clínicas -->
+        <div class="border-t border-[#2C3647] pt-3">
           <label class="text-xs text-[#AEE2FA] font-bold block mb-2 uppercase">Escalas Clínicas Requeridas Pre-SBT:</label>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
             
@@ -499,13 +488,13 @@
     </section>
 
     <!-- PASO 3: MONITOREO EN VIVO TRANS-SBT -->
-    <section id="secStep3" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
+    <section id="secStep3" class="bg-[#181E2B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep3" onclick="DOMWriter.toggleAccordion('step3')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 3</span>
           <h2 class="font-bold text-white uppercase text-sm md:text-base">Prueba Trans-SBT (Monitoreo Activo)</h2>
         </div>
-        <span id="badgeStep3" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">En Espera</span>
+        <span id="badgeStep3" class="text-xs px-2 py-1 rounded bg-[#2C3647] text-white">En Espera</span>
       </div>
 
       <div id="contentStep3" class="accordion-content p-4 space-y-4">
@@ -514,7 +503,7 @@
           <div class="flex flex-wrap justify-between items-center border-b border-[#AEE2FA] pb-2 mb-3 gap-2">
             <div class="flex items-center space-x-2">
               <span class="text-xs text-[#AEE2FA] font-bold">INTERVALO ACTIVO:</span>
-              <span id="lblActiveTimepoint" class="text-xl font-bold font-mono text-[#FEB468] bg-[#3D3F4B] px-3 py-0.5 rounded border border-[#FEB468]">
+              <span id="lblActiveTimepoint" class="text-xl font-bold font-mono text-[#FEB468] bg-[#181E2B] px-3 py-0.5 rounded border border-[#FEB468]">
                 MINUTO 0
               </span>
             </div>
@@ -533,32 +522,32 @@
             
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Ppico (cmH2O):</label>
-              <input type="number" inputmode="numeric" id="btnLivePPico" onfocus="this.select()" onchange="AppEngine.updateTransVal('pPico', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="12">
+              <input type="number" min="0" step="1" inputmode="numeric" id="btnLivePPico" onfocus="this.select()" onchange="AppEngine.updateTransVal('pPico', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="12">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">FiO2 (%):</label>
-              <input type="number" inputmode="numeric" id="btnLiveFiO2" onfocus="this.select()" onchange="AppEngine.updateTransVal('fiO2', parseFloat(this.value)||21)" class="input-pb font-mono font-bold text-base" value="21">
+              <input type="number" min="21" max="100" step="1" inputmode="numeric" id="btnLiveFiO2" onfocus="this.select()" onchange="AppEngine.updateTransVal('fiO2', Math.min(100,Math.max(21,parseFloat(this.value)||21)))" class="input-pb font-mono font-bold text-base" value="21">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">RResp (rpm):</label>
-              <input type="number" inputmode="numeric" id="btnLiveRResp" onfocus="this.select()" onchange="AppEngine.updateTransVal('rResp', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="12">
+              <input type="number" min="0" step="1" inputmode="numeric" id="btnLiveRResp" onfocus="this.select()" onchange="AppEngine.updateTransVal('rResp', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="12">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">VTesp (mL):</label>
-              <input type="number" inputmode="numeric" id="btnLiveVTesp" onfocus="this.select()" onchange="AppEngine.updateTransVal('vTesp', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="400">
+              <input type="number" min="0" step="10" inputmode="numeric" id="btnLiveVTesp" onfocus="this.select()" onchange="AppEngine.updateTransVal('vTesp', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="400">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">Pocc (-cmH2O):</label>
-              <input type="number" inputmode="decimal" id="btnLivePOcc" onfocus="this.select()" onchange="AppEngine.updateTransVal('pOcc', -Math.abs(parseFloat(this.value)||0))" class="input-pb font-mono font-bold text-base" value="0">
+              <input type="number" step="0.1" inputmode="decimal" id="btnLivePOcc" onfocus="this.select()" onchange="AppEngine.updateTransVal('pOcc', -Math.abs(parseFloat(this.value)||0))" class="input-pb font-mono font-bold text-base" value="0.0">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">P0.1 (-cmH2O):</label>
-              <input type="number" inputmode="decimal" step="0.1" id="btnLiveP01" onfocus="this.select()" onchange="AppEngine.updateTransVal('p01', -Math.abs(parseFloat(this.value)||0))" class="input-pb font-mono font-bold text-base" value="0.0">
+              <input type="number" step="0.1" inputmode="decimal" id="btnLiveP01" onfocus="this.select()" onchange="AppEngine.updateTransVal('p01', -Math.abs(parseFloat(this.value)||0))" class="input-pb font-mono font-bold text-base" value="0.0">
             </div>
 
             <div>
@@ -568,32 +557,17 @@
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">FC (lpm):</label>
-              <input type="number" inputmode="numeric" id="btnLiveFC" onfocus="this.select()" onchange="AppEngine.updateTransVal('fc', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="75">
+              <input type="number" min="0" step="1" inputmode="numeric" id="btnLiveFC" onfocus="this.select()" onchange="AppEngine.updateTransVal('fc', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="75">
             </div>
 
             <div>
               <label class="text-[10px] text-[#AEE2FA] font-bold block">SpO2 (%):</label>
-              <input type="number" inputmode="numeric" id="btnLiveSpO2" onfocus="this.select()" onchange="AppEngine.updateTransVal('spO2', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="98">
-            </div>
-
-            <div id="wrapperLiveFI" class="hidden">
-              <label class="text-[10px] text-[#AEE2FA] font-bold block">Indice F/I:</label>
-              <select id="btnLiveFI" onchange="AppEngine.updateTransVal('fI', this.value)" class="input-pb font-mono font-bold text-base">
-                <option value="=1">=1</option>
-                <option value=">1">&gt;1</option>
-                <option value="<1">&lt;1</option>
-                <option value="N/A">N/A</option>
-              </select>
-            </div>
-
-            <div id="wrapperLiveMitr" class="hidden">
-              <label class="text-[10px] text-[#FEB468] font-bold block">Mitral E/E':</label>
-              <input type="number" inputmode="decimal" step="0.1" id="btnLiveMitr" onfocus="this.select()" onchange="AppEngine.updateTransVal('mitr', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base text-[#FEB468]" value="0.0">
+              <input type="number" min="0" max="100" step="1" inputmode="numeric" id="btnLiveSpO2" onfocus="this.select()" onchange="AppEngine.updateTransVal('spO2', parseFloat(this.value)||0)" class="input-pb font-mono font-bold text-base" value="98">
             </div>
 
           </div>
 
-          <div class="bg-[#3D3F4B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
+          <div class="bg-[#181E2B] p-2 rounded border border-[#AEE2FA] flex flex-wrap justify-between items-center text-xs font-mono gap-2">
             <div>VM: <span id="lblDerivedVM" class="font-bold text-[#FEB468]">4.8 L/min</span></div>
             <div>Pmus: <span id="lblDerivedPmus" class="font-bold text-[#FEB468]">0.0 cmH2O</span></div>
             <div>Cdyn: <span id="lblDerivedCdyn" class="font-bold text-[#FEB468]">#?</span></div>
@@ -619,21 +593,19 @@
                 <th class="p-2">Pmus</th>
                 <th class="p-2">Cdyn</th>
                 <th class="p-2">LTCdyn</th>
-                <th class="p-2">F/I</th>
                 <th class="p-2">P0.1</th>
                 <th class="p-2">RSBI</th>
                 <th class="p-2">PAM</th>
                 <th class="p-2">FC</th>
                 <th class="p-2">SpO2</th>
-                <th id="thMitr" class="p-2 hidden">Mitr</th>
               </tr>
             </thead>
-            <tbody id="tbodyTransSBT" class="divide-y divide-[#5D6C87] bg-[#3D3F4B] font-mono"></tbody>
+            <tbody id="tbodyTransSBT" class="divide-y divide-[#2C3647] bg-[#181E2B] font-mono"></tbody>
           </table>
         </div>
 
         <div class="flex justify-end pt-3">
-          <button type="button" onclick="AppEngine.finishSBT()" class="btn-pb px-4 py-2 text-xs bg-[#FEB468] !text-[#3D3F4B] !border-[#FEB468]">
+          <button type="button" onclick="AppEngine.finishSBT()" class="btn-pb px-4 py-2 text-xs bg-[#FEB468] !text-[#181E2B] !border-[#FEB468]">
             🏁 SBT FINALIZADA (PASO 4) ➔
           </button>
         </div>
@@ -642,18 +614,18 @@
     </section>
 
     <!-- PASO 4: DESENLACE Y POST-EXTUBACIÓN -->
-    <section id="secStep4" class="bg-[#3D3F4B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
+    <section id="secStep4" class="bg-[#181E2B] border border-[#AEE2FA] rounded-lg overflow-hidden shadow-md">
       <div id="headerStep4" onclick="DOMWriter.toggleAccordion('step4')" class="bg-[#004FA8] p-3 flex justify-between items-center cursor-pointer transition-colors">
         <div class="flex items-center space-x-2">
           <span class="bg-[#0269DE] text-white px-2 py-0.5 rounded text-xs font-bold border border-[#AEE2FA]">PASO 4</span>
           <h2 class="font-bold text-white uppercase text-sm md:text-base">Desenlace y Post-Extubación</h2>
         </div>
-        <span id="badgeStep4" class="text-xs px-2 py-1 rounded bg-[#5D6C87] text-white">Pendiente</span>
+        <span id="badgeStep4" class="text-xs px-2 py-1 rounded bg-[#2C3647] text-white">Pendiente</span>
       </div>
 
       <div id="contentStep4" class="accordion-content p-4 space-y-4">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           
           <div>
             <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Fecha Extubación:</label>
@@ -661,13 +633,8 @@
           </div>
 
           <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo Retiro VMI (Minutos):</label>
-            <input type="number" inputmode="numeric" id="inpTiempoRetiroMin" onfocus="this.select()" onchange="AppState.postSBT.tiempoRetiroMin=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
-          </div>
-
-          <div>
-            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo Retiro VMI (Horas):</label>
-            <input type="number" inputmode="decimal" step="0.5" id="inpTiempoRetiroHoras" onfocus="this.select()" onchange="AppState.postSBT.tiempoRetiroHoras=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+            <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo Retiro VMI (minutos):</label>
+            <input type="number" min="0" step="1" inputmode="numeric" id="inpTiempoRetiroMin" onfocus="this.select()" onchange="AppEngine.handleRetiroMinChange(this.value)" class="input-pb font-mono text-sm" value="0">
           </div>
 
           <div>
@@ -680,22 +647,25 @@
 
         </div>
 
-        <!-- Panel Dinámico: Soporte Atmosférico vs Positivo -->
         <div id="panelSoporteAtmos" class="bg-[#004FA8]/60 p-3 rounded border border-[#AEE2FA] space-y-3">
           <div class="text-xs font-bold text-[#FEB468] uppercase">Dispositivo de Presión Atmosférica</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Dispositivo Disponible:</label>
-              <select id="selDispositivoAtmos" onchange="AppState.postSBT.dispositivoAtmos=this.value; AppEngine.saveState();" class="input-pb">
+              <select id="selDispositivoAtmos" onchange="AppEngine.changeDispositivoAtmos(this.value)" class="input-pb">
                 <option value="Puntas Nasales Simples">Puntas Nasales Simples</option>
                 <option value="Mascarilla Simple">Mascarilla Simple</option>
                 <option value="Mascarilla Reservorio">Mascarilla Reservorio</option>
                 <option value="Cánulas de Alto Flujo">Cánulas de Alto Flujo (CNAF)</option>
               </select>
             </div>
+            <div id="wrapperFlowCNAF" class="hidden">
+              <label class="text-xs text-[#FEB468] font-bold block mb-1">Flujo CNAF (L/min):</label>
+              <input type="number" min="10" max="80" step="1" inputmode="numeric" id="inpFlowCNAF" onfocus="this.select()" onchange="AppState.postSBT.flowExtub=Math.min(80,Math.max(10,parseFloat(this.value)||30)); AppEngine.saveState();" class="input-pb font-mono font-bold text-[#FEB468]" value="30">
+            </div>
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">FiO2 Suministrada (%):</label>
-              <input type="number" inputmode="numeric" id="inpFiO2Atmos" onfocus="this.select()" onchange="AppState.postSBT.fiO2Extubacion=parseFloat(this.value)||21; AppEngine.saveState();" class="input-pb font-mono" value="21">
+              <input type="number" min="21" max="100" step="1" inputmode="numeric" id="inpFiO2Atmos" onfocus="this.select()" onchange="AppState.postSBT.fiO2Extubacion=Math.min(100,Math.max(21,parseFloat(this.value)||21)); AppEngine.saveState();" class="input-pb font-mono" value="21">
             </div>
           </div>
         </div>
@@ -706,27 +676,26 @@
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Dispositivo:</label>
               <select id="selDispositivoPosit" onchange="AppState.postSBT.dispositivoPosit=this.value; AppEngine.saveState();" class="input-pb">
-                <option value="CPAP">CPAP</option>
                 <option value="VNI">VNI (BiPAP)</option>
+                <option value="CPAP">CPAP</option>
               </select>
             </div>
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Ps (cmH2O):</label>
-              <input type="number" inputmode="numeric" id="inpPsExtub" onfocus="this.select()" onchange="AppState.postSBT.psExtubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpPsExtub" onfocus="this.select()" onchange="AppState.postSBT.psExtubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
             </div>
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">PEEP (cmH2O):</label>
-              <input type="number" inputmode="numeric" id="inpPEEPExtub" onfocus="this.select()" onchange="AppState.postSBT.peepExtubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="5">
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpPEEPExtub" onfocus="this.select()" onchange="AppState.postSBT.peepExtubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="5">
             </div>
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">FiO2 (%):</label>
-              <input type="number" inputmode="numeric" id="inpFiO2Extub" onfocus="this.select()" onchange="AppState.postSBT.fiO2Extubacion=parseFloat(this.value)||21; AppEngine.saveState();" class="input-pb font-mono" value="30">
+              <input type="number" min="21" max="100" step="1" inputmode="numeric" id="inpFiO2Extub" onfocus="this.select()" onchange="AppState.postSBT.fiO2Extubacion=Math.min(100,Math.max(21,parseFloat(this.value)||21)); AppEngine.saveState();" class="input-pb font-mono" value="30">
             </div>
           </div>
         </div>
 
-        <!-- Sección de Falla de Extubación -->
-        <div class="bg-[#3D3F4B] p-3 rounded border border-[#FEB468] space-y-3">
+        <div class="bg-[#181E2B] p-3 rounded border border-[#FEB468] space-y-3">
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" id="chkFalla" onchange="AppEngine.toggleFalla(this.checked)" class="w-5 h-5 accent-[#FEB468]">
             <span class="font-bold text-white text-sm">¿Presentó Falla a la Extubación?</span>
@@ -734,16 +703,16 @@
 
           <div id="panelFallaDetails" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 hidden">
             <div>
-              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Horas a la Falla:</label>
-              <input type="number" inputmode="decimal" step="0.5" id="inpHorasFalla" onfocus="this.select()" onchange="AppState.postSBT.horasFalla=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo a la Falla (Minutos):</label>
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpHorasFallaMin" onfocus="this.select()" onchange="AppEngine.handleFallaMinChange(this.value)" class="input-pb font-mono text-sm" value="0">
             </div>
             <div>
               <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Razón de la Falla (Causa):</label>
               <input type="text" id="inpRazonFalla" onchange="AppState.postSBT.razonFalla=this.value; AppEngine.saveState();" class="input-pb text-sm" placeholder="Agotamiento, secreciones, etc.">
             </div>
             <div>
-              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Horas a la Reintubación:</label>
-              <input type="number" inputmode="decimal" step="0.5" id="inpHorasReintubacion" onfocus="this.select()" onchange="AppState.postSBT.horasReintubacion=parseFloat(this.value)||0; AppEngine.saveState();" class="input-pb font-mono" value="0">
+              <label class="text-xs text-[#AEE2FA] font-bold block mb-1">Tiempo Reintubación (Minutos):</label>
+              <input type="number" min="0" step="1" inputmode="numeric" id="inpHorasReintubacionMin" onfocus="this.select()" onchange="AppEngine.handleReintubacionMinChange(this.value)" class="input-pb font-mono text-sm" value="0">
             </div>
           </div>
         </div>
@@ -768,8 +737,8 @@
 
   <!-- MODAL UNIVERSAL PARA PICKER VERTICAL -->
   <div id="pickerModal" class="fixed inset-0 z-50 bg-black/70 flex justify-end flex-col hidden">
-    <div class="bg-[#3D3F4B] border-t-2 border-[#FEB468] rounded-t-2xl p-4 max-w-lg w-full mx-auto shadow-2xl">
-      <div class="flex justify-between items-center border-b border-[#5D6C87] pb-2 mb-2">
+    <div class="bg-[#181E2B] border-t-2 border-[#FEB468] rounded-t-2xl p-4 max-w-lg w-full mx-auto shadow-2xl">
+      <div class="flex justify-between items-center border-b border-[#2C3647] pb-2 mb-2">
         <h3 id="pickerModalTitle" class="font-bold text-[#FEB468] text-base uppercase">Seleccionar Valor</h3>
         <button type="button" onclick="PickerMaster.closeModal()" class="text-white text-xl font-bold px-2">&times;</button>
       </div>
@@ -782,7 +751,7 @@
 
   <!-- MODAL GENERAL PARA CALCULADORAS DE ESCALAS CLÍNICAS -->
   <div id="scaleModal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-3 hidden overflow-y-auto">
-    <div class="bg-[#3D3F4B] border-2 border-[#AEE2FA] rounded-lg p-4 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl space-y-4">
+    <div class="bg-[#181E2B] border-2 border-[#AEE2FA] rounded-lg p-4 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl space-y-4">
       <div class="flex justify-between items-center border-b border-[#AEE2FA] pb-2">
         <h3 id="scaleModalTitle" class="font-bold text-[#FEB468] text-lg uppercase">Calculadora de Escala</h3>
         <button type="button" onclick="ScalesEngine.closeModal()" class="text-white text-2xl font-bold">&times;</button>
@@ -790,7 +759,7 @@
 
       <div id="scaleModalBody" class="space-y-3"></div>
 
-      <div class="flex justify-end space-x-2 pt-3 border-t border-[#5D6C87]">
+      <div class="flex justify-end space-x-2 pt-3 border-t border-[#2C3647]">
         <button type="button" onclick="ScalesEngine.closeModal()" class="btn-pb px-4 py-2 text-xs bg-gray-600">CANCELAR</button>
         <button type="button" onclick="ScalesEngine.saveCurrentScale()" class="btn-pb px-4 py-2 text-xs">GUARDAR Y APLICAR</button>
       </div>
@@ -802,7 +771,7 @@
        1. ARBOL DE ESTADO CENTRALIZADO (APP STATE) Y PERSISTENCIA LOCAL
        ========================================================================== */
     const AppState = {
-      registry: {}, // Almacén local de pacientes por Expediente
+      registry: {},
       counters: { HM: 1, HZ: 1, HU: 1 },
       patient: {
         fechaSBT: new Date().toISOString().slice(0,10),
@@ -816,7 +785,7 @@
         dxAct: true, hd: true, vasop: false, esp: true,
         psBasal: 10, peepBasal: 5, pPico: 18, fiO2: 30, rResp: 16, vTesp: 450,
         pOcc: -10, p01: -1.5, pam: 85, fc: 75, spO2: 98, nif: -25,
-        pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",
+        pH: "7.40", paO2: null, svcO2: "70", htc: "36", temp: "36.5",
         paFi: null, saFi: null, mitr: "0.0",
         four: null, gcs: null, mrc: null, sofa2: null, expres: null, visage: null,
         isComplete: false
@@ -832,16 +801,20 @@
         fechaExtubacion: new Date().toISOString().slice(0,10),
         tiempoRetiroMin: 0,
         tiempoRetiroHoras: 0,
+        tiempoRetiroHHMM: "00:00",
         tipoSoporte: "Atmosférica",
         dispositivoAtmos: "Puntas Nasales Simples",
         dispositivoPosit: "CPAP",
+        flowExtub: 30,
         psExtubacion: 0,
         peepExtubacion: 5,
         fiO2Extubacion: 21,
         falla: false,
         horasFalla: 0,
+        horasFallaHHMM: "00:00",
         razonFalla: "",
-        horasReintubacion: 0
+        horasReintubacion: 0,
+        horasReintubacionHHMM: "00:00"
       },
       timer: { elapsedSeconds: 0, isRunning: false, timerRef: null }
     };
@@ -853,7 +826,7 @@
       calcIMC(weight, heightMeters) {
         if (!weight || !heightMeters || heightMeters <= 0) return "---";
         const imc = weight / (heightMeters * heightMeters);
-        return imc.toFixed(1) + " kg/m²";
+        return imc.toFixed(1);
       },
 
       calcPBW(heightMeters, sex) {
@@ -956,7 +929,6 @@
       saveState() {
         try {
           localStorage.setItem('weaning_app_state', JSON.stringify(AppState));
-          // Guardar registro en historial por Expediente si existe
           if (AppState.patient.exp) {
             let reg = JSON.parse(localStorage.getItem('weaning_patient_registry') || '{}');
             reg[AppState.patient.exp] = AppState.patient;
@@ -965,6 +937,36 @@
         } catch(e) { console.error('Error guardando estado', e); }
       },
 
+        handleSeqDigitsChange(val) {
+        const num = parseInt(val, 10) || 1;
+        const formatted = String(num).padStart(3, '0');
+        AppState.patient.seqDigits = formatted;
+        if (document.getElementById('inpSeqDigits')) document.getElementById('inpSeqDigits').value = formatted;
+        AppEngine.updateFolio();
+        AppEngine.saveState();
+      },
+
+      handleRetiroMinChange(val) {
+        const mins = parseInt(val, 10) || 0;
+        AppState.postSBT.tiempoRetiroMin = mins;
+        AppState.postSBT.tiempoRetiroHoras = parseFloat((mins / 60).toFixed(1));
+        AppEngine.saveState();
+      },
+
+      handleFallaMinChange(val) {
+        const mins = parseInt(val, 10) || 0;
+        AppState.postSBT.horasFallaMin = mins;
+        AppState.postSBT.horasFalla = parseFloat((mins / 60).toFixed(1));
+        AppEngine.saveState();
+      },
+
+      handleReintubacionMinChange(val) {
+        const mins = parseInt(val, 10) || 0;
+        AppState.postSBT.horasReintubacionMin = mins;
+        AppState.postSBT.horasReintubacion = parseFloat((mins / 60).toFixed(1));
+        AppEngine.saveState();
+      },
+      
       loadState() {
         try {
           const saved = localStorage.getItem('weaning_app_state');
@@ -978,16 +980,16 @@
           if (!AppState.postSBT) {
             AppState.postSBT = {
               fechaExtubacion: new Date().toISOString().slice(0,10),
-              tiempoRetiroMin: 0, tiempoRetiroHoras: 0, tipoSoporte: "Atmosférica",
-              dispositivoAtmos: "Puntas Nasales Simples", dispositivoPosit: "CPAP",
+              tiempoRetiroMin: 0, tiempoRetiroHoras: 0, tiempoRetiroHHMM: "00:00",
+              tipoSoporte: "Atmosférica", dispositivoAtmos: "Puntas Nasales Simples", dispositivoPosit: "CPAP", flowExtub: 30,
               psExtubacion: 0, peepExtubacion: 5, fiO2Extubacion: 21,
-              falla: false, horasFalla: 0, razonFalla: "", horasReintubacion: 0
+              falla: false, horasFalla: 0, horasFallaHHMM: "00:00", razonFalla: "", horasReintubacion: 0, horasReintubacionHHMM: "00:00"
             };
           }
+          if (!AppState.postSBT.flowExtub) AppState.postSBT.flowExtub = 30;
         } catch(e) { console.error('Error cargando estado', e); }
       },
 
-      // Búsqueda en Memoria Local por No. Expediente
       searchExpediente(expVal) {
         AppState.patient.exp = expVal;
         if (!expVal) return;
@@ -996,7 +998,7 @@
           if (reg[expVal]) {
             const match = reg[expVal];
             Object.assign(AppState.patient, match);
-            AppState.patient.exp = expVal; // Mantener expediente
+            AppState.patient.exp = expVal;
             DOMWriter.renderAll();
             alert(` Paciente encontrado en registro local: ${match.nombre}`);
           }
@@ -1004,12 +1006,10 @@
         AppEngine.saveState();
       },
 
-      // Botón "Nueva SBT": Resetea campos a blanco
       newSBT() {
         if (confirm("¿Deseas iniciar una Nueva SBT? Se limpiarán los campos actuales.")) {
           AppEngine.resetTimer();
           
-          // Incrementar secuencia
           const curSeq = parseInt(AppState.patient.seqDigits || "1", 10) + 1;
           const seqStr = String(curSeq).padStart(3, '0');
 
@@ -1026,7 +1026,7 @@
             dxAct: true, hd: true, vasop: false, esp: true,
             psBasal: 10, peepBasal: 5, pPico: 18, fiO2: 30, rResp: 16, vTesp: 450,
             pOcc: -10, p01: -1.5, pam: 85, fc: 75, spO2: 98, nif: -25,
-            pH: "7.40", paO2: null, svcO2: "70", hb: "12.0", htc: "36", temp: "36.5",
+            pH: "7.40", paO2: null, svcO2: "70", htc: "36", temp: "36.5",
             paFi: null, saFi: null, mitr: "0.0",
             four: null, gcs: null, mrc: null, sofa2: null, expres: null, visage: null,
             isComplete: false
@@ -1034,10 +1034,10 @@
 
           AppState.postSBT = {
             fechaExtubacion: new Date().toISOString().slice(0,10),
-            tiempoRetiroMin: 0, tiempoRetiroHoras: 0, tipoSoporte: "Atmosférica",
-            dispositivoAtmos: "Puntas Nasales Simples", dispositivoPosit: "CPAP",
+            tiempoRetiroMin: 0, tiempoRetiroHoras: 0, tiempoRetiroHHMM: "00:00",
+            tipoSoporte: "Atmosférica", dispositivoAtmos: "Puntas Nasales Simples", dispositivoPosit: "CPAP", flowExtub: 30,
             psExtubacion: 0, peepExtubacion: 5, fiO2Extubacion: 21,
-            falla: false, horasFalla: 0, razonFalla: "", horasReintubacion: 0
+            falla: false, horasFalla: 0, horasFallaHHMM: "00:00", razonFalla: "", horasReintubacion: 0, horasReintubacionHHMM: "00:00"
           };
 
           AppEngine.changeInterval(AppState.transSBT.interval || 3);
@@ -1089,10 +1089,39 @@
         document.getElementById('inpFolioFull').value = folio;
       },
 
+      // Manejador para conversión de tiempo HH:MM a Minutos y Horas
+      handleHHMMChange(type, hhmmVal) {
+        if (!hhmmVal) return;
+        const parts = hhmmVal.split(':');
+        const hrs = parseInt(parts[0], 10) || 0;
+        const mins = parseInt(parts[1], 10) || 0;
+        const totalMinutes = (hrs * 60) + mins;
+        const totalHoursDecimal = (totalMinutes / 60).toFixed(1);
+
+        if (type === 'tiempoRetiro') {
+          AppState.postSBT.tiempoRetiroHHMM = hhmmVal;
+          AppState.postSBT.tiempoRetiroMin = totalMinutes;
+          AppState.postSBT.tiempoRetiroHoras = parseFloat(totalHoursDecimal);
+        } else if (type === 'falla') {
+          AppState.postSBT.horasFallaHHMM = hhmmVal;
+          AppState.postSBT.horasFalla = parseFloat(totalHoursDecimal);
+        } else if (type === 'reintubacion') {
+          AppState.postSBT.horasReintubacionHHMM = hhmmVal;
+          AppState.postSBT.horasReintubacion = parseFloat(totalHoursDecimal);
+        }
+        AppEngine.saveState();
+      },
+
       changeTipoSoporte(val) {
         AppState.postSBT.tipoSoporte = val;
         document.getElementById('panelSoporteAtmos').classList.toggle('hidden', val !== 'Atmosférica');
         document.getElementById('panelSoportePosit').classList.toggle('hidden', val !== 'Positiva');
+        AppEngine.saveState();
+      },
+
+      changeDispositivoAtmos(val) {
+        AppState.postSBT.dispositivoAtmos = val;
+        document.getElementById('wrapperFlowCNAF').classList.toggle('hidden', val !== 'Cánulas de Alto Flujo');
         AppEngine.saveState();
       },
 
@@ -1105,11 +1134,11 @@
       finishSBT() {
         document.getElementById('headerStep3').classList.add('header-completed');
         document.getElementById('badgeStep3').innerText = 'Completado ✓';
-        DOMWriter.toggleAccordion('step3'); // Colapsa Paso 3
+        DOMWriter.toggleAccordion('step3');
 
         const contentStep4 = document.getElementById('contentStep4');
         if (contentStep4 && contentStep4.classList.contains('collapsed')) {
-          DOMWriter.toggleAccordion('step4'); // Despliega Paso 4
+          DOMWriter.toggleAccordion('step4');
         }
       }
     };
@@ -1122,6 +1151,101 @@
 
       closeModal() {
         document.getElementById('scaleModal').classList.add('hidden');
+      },
+
+      recalculateAll() {
+        const pre = AppState.preSBT;
+
+        // 1. Recálculo automático SOFA-2
+        if (pre.sofa2Scores || pre.sofa2 !== null) {
+          let ptsPaFi = 0;
+          const paFiVal = Calculators.cleanPaFiVal(pre.paFi);
+          if (paFiVal > 0) {
+            if (paFiVal < 75) ptsPaFi = 4;
+            else if (paFiVal <= 150) ptsPaFi = 3;
+            else if (paFiVal <= 225) ptsPaFi = 2;
+            else if (paFiVal <= 299) ptsPaFi = 1;
+          }
+
+          let ptsGCS = 0;
+          const gcsVal = pre.gcs ? pre.gcs.total : 15;
+          if (gcsVal < 6) ptsGCS = 4;
+          else if (gcsVal <= 9) ptsGCS = 3;
+          else if (gcsVal <= 12) ptsGCS = 2;
+          else if (gcsVal <= 14) ptsGCS = 1;
+
+          const sub = pre.sofa2Scores || { plt: 0, bil: 0, cv: 0, ren: 0 };
+          pre.sofa2 = ptsPaFi + ptsGCS + (sub.plt || 0) + (sub.bil || 0) + (sub.cv || 0) + (sub.ren || 0);
+        }
+
+        // 2. Recálculo automático ExPreS
+        if (pre.expres || pre.expresScores) {
+          const rsbiVal = parseFloat(Calculators.calcRSBI(pre.rResp, pre.vTesp)) || 0;
+          let ptsRSBI = 0;
+          if (rsbiVal > 0 && rsbiVal <= 42) ptsRSBI = 25;
+          else if (rsbiVal <= 54) ptsRSBI = 20;
+          else if (rsbiVal <= 76) ptsRSBI = 10;
+          else if (rsbiVal <= 90) ptsRSBI = 5;
+
+          const cdynVal = parseFloat(Calculators.calcCdyn(pre.vTesp, pre.pPico, pre.peepBasal)) || 0;
+          let ptsCdyn = 0;
+          if (cdynVal >= 63) ptsCdyn = 15;
+          else if (cdynVal >= 51) ptsCdyn = 10;
+          else if (cdynVal >= 43) ptsCdyn = 7;
+          else if (cdynVal >= 32) ptsCdyn = 3;
+
+          let ptsDVM = 0;
+          const dVm = AppState.patient.dVm || 0;
+          if (dVm <= 3) ptsDVM = 10;
+          else if (dVm <= 5) ptsDVM = 7;
+          else if (dVm <= 8) ptsDVM = 4;
+          else if (dVm <= 10) ptsDVM = 1;
+
+          let ptsGCS = 0;
+          const gcsVal = pre.gcs ? pre.gcs.total : 15;
+          if (gcsVal >= 14) ptsGCS = 10;
+          else if (gcsVal >= 12) ptsGCS = 6;
+          else if (gcsVal >= 9) ptsGCS = 3;
+
+          let ptsMRC = 0;
+          const mrcVal = pre.mrc ? pre.mrc.total : 60;
+          if (mrcVal >= 49) ptsMRC = 10;
+          else if (mrcVal >= 37) ptsMRC = 7;
+          else if (mrcVal >= 25) ptsMRC = 4;
+          else if (mrcVal >= 13) ptsMRC = 1;
+
+          const exSub = pre.expresScores || { htc: 10, cr: 10, neuro: 10 };
+          const ptsHtc = exSub.htc !== undefined ? exSub.htc : 10;
+          const ptsCr = exSub.cr !== undefined ? exSub.cr : 10;
+          const ptsNeuro = exSub.neuro !== undefined ? exSub.neuro : 10;
+
+          const total = ptsRSBI + ptsCdyn + ptsDVM + ptsGCS + ptsMRC + ptsHtc + ptsCr + ptsNeuro;
+          let prob = "< 45 (57.1% Éxito)";
+          if (total >= 58) prob = "> 58 (98.7% Éxito)";
+          else if (total >= 45) prob = "45-58 (88.3% Éxito)";
+
+          pre.expres = { total, prob };
+          pre.expresScores = { rsbi: ptsRSBI, cdyn: ptsCdyn, dvm: ptsDVM, gcs: ptsGCS, mrc: ptsMRC, htc: ptsHtc, cr: ptsCr, neuro: ptsNeuro };
+        }
+
+        // 3. Recálculo automático Visage
+        if (pre.visage || pre.visageScores) {
+          let total = 0;
+          const edad = AppState.patient.edad || 35;
+          const gcsVal = pre.gcs ? pre.gcs.total : 15;
+          const isOcular4 = (pre.four && pre.four.o === 4) || (pre.gcs && pre.gcs.o === 4);
+          const visSub = pre.visageScores || { deglucio: 1 };
+
+          const isEdad = edad < 40 ? 1 : 0;
+          const isOcular = isOcular4 ? 1 : 0;
+          const isDeglucio = visSub.deglucio !== undefined ? visSub.deglucio : 1;
+          const isGcs = gcsVal > 10 ? 1 : 0;
+
+          total = isEdad + isOcular + isDeglucio + isGcs;
+          const prob = total >= 3 ? "> 90% Éxito" : "< 70% Éxito";
+          pre.visage = { total, prob };
+          pre.visageScores = { edad: isEdad, ocular: isOcular, deglucio: isDeglucio, gcs: isGcs };
+        }
       },
 
       openFOUR() {
@@ -1242,7 +1366,7 @@
           const scoreR = (current.scores && current.scores[`${g}-R`]) !== undefined ? current.scores[`${g}-R`] : 5;
 
           html += `
-            <div class="bg-[#5D6C87] p-2 rounded border border-[#AEE2FA] space-y-1">
+            <div class="bg-[#2C3647] p-2 rounded border border-[#AEE2FA] space-y-1">
               <span class="font-bold text-[#FEB468] block">${g}</span>
               <div class="flex justify-between items-center space-x-1">
                 <span>Izq (-L):</span>
@@ -1283,7 +1407,8 @@
 
       quickSetMRC(val) {
         AppState.preSBT.mrc = { total: val, scores: {} };
-        document.getElementById('scoreMRC').innerText = `${val} / 60 pts`;
+        ScalesEngine.recalculateAll();
+        DOMWriter.renderPreSBT();
         AppEngine.saveState();
         this.closeModal();
       },
@@ -1389,7 +1514,7 @@
               </select>
             </div>
 
-            <div class="bg-[#5D6C87] p-3 rounded border border-[#FEB468]">
+            <div class="bg-[#2C3647] p-3 rounded border border-[#FEB468]">
               <label class="flex items-center space-x-2 cursor-pointer">
                 <input type="checkbox" id="chkNeuroComorb" onchange="ScalesEngine.toggleNeuroTrigger(this.checked)" class="w-5 h-5 accent-[#FEB468]">
                 <span class="font-bold text-white">Comorbilidad Neurológica Presente (Si = 0 pts / No = 10 pts)</span>
@@ -1425,7 +1550,7 @@
 
         document.getElementById('scaleModalBody').innerHTML = `
           <div class="space-y-3 text-xs">
-            <div class="bg-[#5D6C87] p-2 rounded space-y-2">
+            <div class="bg-[#2C3647] p-2 rounded space-y-2">
               <label class="flex items-center space-x-2">
                 <input type="checkbox" id="visageEdad" ${edad < 40 ? 'checked' : ''} class="w-4 h-4 accent-[#FEB468]">
                 <span>Edad < 40 años (1 pt)</span>
@@ -1456,7 +1581,6 @@
           const r = parseInt(document.getElementById('fourR').value, 10);
           const total = o + m + b + r;
           AppState.preSBT.four = { o, m, b, r, total };
-          document.getElementById('scoreFOUR').innerText = `${total} / 16 pts`;
         }
         else if (this.activeScale === 'GCS') {
           const o = parseInt(document.getElementById('gcsO').value, 10);
@@ -1464,7 +1588,6 @@
           const m = parseInt(document.getElementById('gcsM').value, 10);
           const total = o + v + m;
           AppState.preSBT.gcs = { o, v, m, total };
-          document.getElementById('scoreGCS').innerText = `${total} / 15 pts`;
         }
         else if (this.activeScale === 'MRC') {
           const mrcGroups = ["Abd Hombro", "Flex Codo", "Ext Muñeca", "Flex Cadera", "Ext Rodilla", "Dorsiflex Tobillo"];
@@ -1478,95 +1601,47 @@
             total += (valL + valR);
           });
           AppState.preSBT.mrc = { total, scores };
-          document.getElementById('scoreMRC').innerText = `${total} / 60 pts`;
         }
         else if (this.activeScale === 'SOFA2') {
-          let ptsPaFi = 0;
-          const paFiVal = Calculators.cleanPaFiVal(AppState.preSBT.paFi);
-          if (paFiVal < 75) ptsPaFi = 4;
-          else if (paFiVal <= 150) ptsPaFi = 3;
-          else if (paFiVal <= 225) ptsPaFi = 2;
-          else if (paFiVal <= 299) ptsPaFi = 1;
-
-          let ptsGCS = 0;
-          const gcsVal = AppState.preSBT.gcs ? AppState.preSBT.gcs.total : 15;
-          if (gcsVal < 6) ptsGCS = 4;
-          else if (gcsVal <= 9) ptsGCS = 3;
-          else if (gcsVal <= 12) ptsGCS = 2;
-          else if (gcsVal <= 14) ptsGCS = 1;
-
           const ptsPlt = parseInt(document.getElementById('sofaPlt').value, 10);
           const ptsBil = parseInt(document.getElementById('sofaBilT').value, 10);
           const ptsCV = parseInt(document.getElementById('sofaCVSupp').value, 10);
           const ptsRen = parseInt(document.getElementById('sofaRen').value, 10);
 
-          const total = ptsPaFi + ptsGCS + ptsPlt + ptsBil + ptsCV + ptsRen;
-          AppState.preSBT.sofa2 = total;
           AppState.preSBT.sofa2Scores = { plt: ptsPlt, bil: ptsBil, cv: ptsCV, ren: ptsRen };
-          document.getElementById('scoreSOFA2').innerText = `${total} / 24 pts`;
+          AppState.preSBT.sofa2 = 0;
         }
         else if (this.activeScale === 'ExPreS') {
-          let ptsRSBI = 0;
-          let ptsDVM = 0;
-          const dVm = AppState.patient.dVm || 0;
-          if (dVm <= 3) ptsDVM = 10;
-          else if (dVm <= 5) ptsDVM = 7;
-          else if (dVm <= 8) ptsDVM = 4;
-          else if (dVm <= 10) ptsDVM = 1;
-
-          let ptsGCS = 0;
-          const gcsVal = AppState.preSBT.gcs ? AppState.preSBT.gcs.total : 15;
-          if (gcsVal >= 14) ptsGCS = 10;
-          else if (gcsVal >= 12) ptsGCS = 6;
-          else if (gcsVal >= 9) ptsGCS = 3;
-
-          let ptsMRC = 0;
-          const mrcVal = AppState.preSBT.mrc ? AppState.preSBT.mrc.total : 60;
-          if (mrcVal >= 49) ptsMRC = 10;
-          else if (mrcVal >= 37) ptsMRC = 7;
-          else if (mrcVal >= 25) ptsMRC = 4;
-          else if (mrcVal >= 13) ptsMRC = 1;
-
           const ptsHtc = parseInt(document.getElementById('expresHtc').value, 10);
           const ptsCr = parseInt(document.getElementById('expresCr').value, 10);
           const isNeuro = document.getElementById('chkNeuroComorb').checked;
-          const ptsNeuro = isNeuro ? 0 : 10;
 
-          const total = ptsRSBI + ptsDVM + ptsGCS + ptsMRC + ptsHtc + ptsCr + ptsNeuro;
-          
-          let prob = "< 45 (57.1% Éxito)";
-          if (total >= 58) prob = "> 58 (98.7% Éxito)";
-          else if (total >= 45) prob = "45-58 (88.3% Éxito)";
-
-          AppState.preSBT.expres = { total, prob };
-          AppState.preSBT.expresScores = { htc: ptsHtc, cr: ptsCr, neuro: isNeuro ? 'SI' : 'NO' };
-          document.getElementById('scoreExPreS').innerText = `${total} pts`;
+          AppState.preSBT.expresScores = {
+            htc: ptsHtc,
+            cr: ptsCr,
+            neuro: isNeuro ? 0 : 10
+          };
+          AppState.preSBT.expres = { total: 0, prob: "" };
         }
         else if (this.activeScale === 'Visage') {
-          let total = 0;
           const isEdad = document.getElementById('visageEdad').checked;
           const isOcular = document.getElementById('visageOcular').checked;
           const isDeglucio = document.getElementById('visageDeglucio').checked;
           const isGcs = document.getElementById('visageGCS').checked;
 
-          if (isEdad) total += 1;
-          if (isOcular) total += 1;
-          if (isDeglucio) total += 1;
-          if (isGcs) total += 1;
-
-          const prob = total >= 3 ? "> 90% Éxito" : "< 70% Éxito";
-          AppState.preSBT.visage = { total, prob };
           AppState.preSBT.visageScores = {
             edad: isEdad ? 1 : 0,
             ocular: isOcular ? 1 : 0,
             deglucio: isDeglucio ? 1 : 0,
             gcs: isGcs ? 1 : 0
           };
-          document.getElementById('scoreVisage').innerText = `${total} / 4 pts`;
+          AppState.preSBT.visage = { total: 0, prob: "" };
         }
 
+        ScalesEngine.recalculateAll();
+        DOMWriter.renderPreSBT();
         AppEngine.saveState();
-        this.closeModal();
+        this.closeModal(); // Cierra el modal de la escala automáticamente
       }
     };
 
@@ -1710,10 +1785,9 @@
         const p = AppState.patient;
         if (document.getElementById('inpFechaSBT')) document.getElementById('inpFechaSBT').value = p.fechaSBT || new Date().toISOString().slice(0,10);
         if (document.getElementById('inpNombre')) document.getElementById('inpNombre').value = p.nombre || '';
-        if (document.getElementById('btnHosp')) document.getElementById('btnHosp').innerText = p.hosp;
+        if (document.getElementById('selHosp')) document.getElementById('selHosp').value = p.hosp || 'HM';
         if (document.getElementById('inpExp')) document.getElementById('inpExp').value = p.exp || '';
-        if (document.getElementById('btnSeqDigits')) document.getElementById('btnSeqDigits').innerText = p.seqDigits;
-        
+        if (document.getElementById('inpSeqDigits')) document.getElementById('inpSeqDigits').value = p.seqDigits || '001';
         if (document.getElementById('inpFechaHosp')) document.getElementById('inpFechaHosp').value = p.fechaHosp || '';
         if (document.getElementById('inpFechaIOT')) document.getElementById('inpFechaIOT').value = p.fechaIOT || '';
         if (document.getElementById('inpFechaTQT')) document.getElementById('inpFechaTQT').value = p.fechaTQT || '';
@@ -1725,26 +1799,19 @@
         if (document.getElementById('inpComorb')) document.getElementById('inpComorb').value = p.comorb || '';
         if (document.getElementById('inpIotReason')) document.getElementById('inpIotReason').value = p.iotReason || '';
         if (document.getElementById('inpEdad')) document.getElementById('inpEdad').value = p.edad;
-        if (document.getElementById('btnSexo')) document.getElementById('btnSexo').innerText = p.sexo;
+        if (document.getElementById('selSexo')) document.getElementById('selSexo').value = p.sexo || 'Masc';
         if (document.getElementById('inpTalla')) document.getElementById('inpTalla').value = p.talla;
         if (document.getElementById('inpPeso')) document.getElementById('inpPeso').value = p.peso;
-        if (document.getElementById('btnTET')) document.getElementById('btnTET').innerText = p.tet;
-        if (document.getElementById('btnTQT')) document.getElementById('btnTQT').innerText = p.tqt;
+        if (document.getElementById('selTET')) document.getElementById('selTET').value = p.tet || '7.5';
+        if (document.getElementById('selTQT')) document.getElementById('selTQT').value = p.tqt || 'N/A';
         if (document.getElementById('inpDSeda')) document.getElementById('inpDSeda').value = p.dSeda;
         if (document.getElementById('inpDBnm')) document.getElementById('inpDBnm').value = p.dBnm;
-        if (document.getElementById('btnSubgrupo')) document.getElementById('btnSubgrupo').innerText = p.subgrupo;
+        if (document.getElementById('selSubgrupo')) document.getElementById('selSubgrupo').value = p.subgrupo || '0/ZEEP';
 
         const imc = Calculators.calcIMC(p.peso, p.talla);
         const pbw = Calculators.calcPBW(p.talla, p.sexo);
         document.getElementById('lblIMC').innerText = imc;
         document.getElementById('lblPBW').innerText = pbw;
-
-        const isCard = p.subgrupo === 'Card';
-        const isPSV = p.subgrupo === 'PSV+';
-        
-        document.getElementById('wrapperLiveFI').classList.toggle('hidden', !isPSV);
-        document.getElementById('wrapperLiveMitr').classList.toggle('hidden', !isCard);
-        document.getElementById('thMitr').classList.toggle('hidden', !isCard);
 
         if (p.subgrupo === '0/ZEEP') {
           AppState.transSBT.psStatic = 0;
@@ -1758,6 +1825,8 @@
       renderPreSBT() {
         const pre = AppState.preSBT;
         
+        ScalesEngine.recalculateAll();
+
         if (document.getElementById('inpPsBasal')) document.getElementById('inpPsBasal').value = pre.psBasal;
         if (document.getElementById('inpPEEPBasal')) document.getElementById('inpPEEPBasal').value = pre.peepBasal;
         if (document.getElementById('inpPpicoBasal')) document.getElementById('inpPpicoBasal').value = pre.pPico;
@@ -1774,7 +1843,6 @@
         if (document.getElementById('inpPH')) document.getElementById('inpPH').value = pre.pH;
         if (document.getElementById('inpPaO2')) document.getElementById('inpPaO2').value = pre.paO2 || '';
         if (document.getElementById('inpSvcO2')) document.getElementById('inpSvcO2').value = pre.svcO2;
-        if (document.getElementById('inpHb')) document.getElementById('inpHb').value = pre.hb;
         if (document.getElementById('inpHtc')) document.getElementById('inpHtc').value = pre.htc;
         if (document.getElementById('inpTemp')) document.getElementById('inpTemp').value = pre.temp;
 
@@ -1789,16 +1857,25 @@
         AppState.preSBT.saFi = saFi;
         AppState.preSBT.paFi = paFi;
 
-        document.getElementById('lblBasalVM').innerText = `${vm} L/min`;
-        document.getElementById('lblBasalPmus').innerText = `${pmus} cmH2O`;
-        document.getElementById('lblBasalCdyn').innerText = cdyn;
-        document.getElementById('lblBasalLTCdyn').innerText = ltcdyn;
-        document.getElementById('lblBasalRSBI').innerText = rsbi;
-        document.getElementById('lblBasalSaFi').innerText = saFi;
-        document.getElementById('lblBasalPaFi').innerText = paFi;
+        if (document.getElementById('lblBasalVM')) document.getElementById('lblBasalVM').innerText = `${vm} L/min`;
+        if (document.getElementById('lblBasalPmus')) document.getElementById('lblBasalPmus').innerText = `${pmus} cmH2O`;
+        if (document.getElementById('lblBasalCdyn')) document.getElementById('lblBasalCdyn').innerText = cdyn;
+        if (document.getElementById('lblBasalLTCdyn')) document.getElementById('lblBasalLTCdyn').innerText = ltcdyn;
+        if (document.getElementById('lblBasalRSBI')) document.getElementById('lblBasalRSBI').innerText = rsbi;
+        if (document.getElementById('lblBasalSaFi')) document.getElementById('lblBasalSaFi').innerText = saFi;
+        if (document.getElementById('lblBasalPaFi')) document.getElementById('lblBasalPaFi').innerText = paFi;
 
-        document.getElementById('lblSaFi').innerText = saFi;
-        document.getElementById('lblPaFi').innerText = paFi;
+        // BINDING DINÁMICO DE PUNTAJE EN BOTONES DE ESCALAS (PROTEGIDO)
+        if (document.getElementById('scoreFOUR')) document.getElementById('scoreFOUR').innerText = pre.four ? `${pre.four.total} / 16 pts` : 'Pendiente';
+        if (document.getElementById('scoreGCS')) document.getElementById('scoreGCS').innerText = pre.gcs ? `${pre.gcs.total} / 15 pts` : 'Pendiente';
+        if (document.getElementById('scoreMRC')) document.getElementById('scoreMRC').innerText = pre.mrc ? `${pre.mrc.total} / 60 pts` : 'Pendiente';
+        if (document.getElementById('scoreSOFA2')) document.getElementById('scoreSOFA2').innerText = (pre.sofa2 !== null && pre.sofa2 !== undefined) ? `${pre.sofa2} / 24 pts` : 'Pendiente';
+        if (document.getElementById('scoreExPreS')) document.getElementById('scoreExPreS').innerText = pre.expres ? `${pre.expres.total} pts` : 'Pendiente';
+        
+        const isVisActive = pre.expresScores && pre.expresScores.neuro === 0;
+        if (document.getElementById('scoreVisage')) {
+          document.getElementById('scoreVisage').innerText = isVisActive ? (pre.visage ? `${pre.visage.total} / 4 pts` : 'Pendiente') : 'N/A';
+        }
       },
 
       renderTransSBT() {
@@ -1818,8 +1895,6 @@
         document.getElementById('inpLivePAM').value = row.pam;
         document.getElementById('btnLiveFC').value = row.fc;
         document.getElementById('btnLiveSpO2').value = row.spO2;
-        if (document.getElementById('btnLiveFI')) document.getElementById('btnLiveFI').value = row.fI;
-        if (document.getElementById('btnLiveMitr')) document.getElementById('btnLiveMitr').value = row.mitr;
 
         const vm = Calculators.calcVM(row.vTesp, row.rResp);
         const pmus = Calculators.calcPmus(row.pOcc);
@@ -1842,8 +1917,6 @@
         const tbody = document.getElementById('tbodyTransSBT');
         tbody.innerHTML = '';
 
-        const isCard = AppState.patient.subgrupo === 'Card';
-
         AppState.transSBT.rows.forEach((r, idx) => {
           const vm = Calculators.calcVM(r.vTesp, r.rResp);
           const pmus = Calculators.calcPmus(r.pOcc);
@@ -1855,7 +1928,7 @@
           const isComplete = r.isTouched;
 
           const tr = document.createElement('tr');
-          tr.className = `${isCurrent ? 'bg-[#0269DE]/40 border-l-4 border-[#FEB468]' : ''} ${isComplete ? 'header-completed' : ''} hover:bg-[#5D6C87]/50 cursor-pointer`;
+          tr.className = `${isCurrent ? 'bg-[#0269DE]/40 border-l-4 border-[#FEB468]' : ''} ${isComplete ? 'header-completed' : ''} hover:bg-[#2C3647]/50 cursor-pointer`;
           tr.onclick = () => { AppState.transSBT.activeIndex = idx; DOMWriter.renderTransSBT(); };
 
           tr.innerHTML = `
@@ -1871,13 +1944,11 @@
             <td class="p-2">${pmus}</td>
             <td class="p-2 ${cdyn==='#?'?'text-[#D94800] font-bold':''}">${cdyn}</td>
             <td class="p-2">${ltcdyn}</td>
-            <td class="p-2">${r.fI}</td>
             <td class="p-2">${r.p01}</td>
             <td class="p-2 ${rsbi==='#?'?'text-[#D94800] font-bold':''}">${rsbi}</td>
             <td class="p-2">${r.pam}</td>
             <td class="p-2">${r.fc}</td>
             <td class="p-2">${r.spO2}%</td>
-            ${isCard ? `<td class="p-2 text-[#FEB468] font-bold">${r.time===0||r.time===15||r.time===30?r.mitr:'---'}</td>` : ''}
           `;
           tbody.appendChild(tr);
         });
@@ -1887,21 +1958,24 @@
         const post = AppState.postSBT || {};
         if (document.getElementById('inpFechaExtubacion')) document.getElementById('inpFechaExtubacion').value = post.fechaExtubacion || new Date().toISOString().slice(0,10);
         if (document.getElementById('inpTiempoRetiroMin')) document.getElementById('inpTiempoRetiroMin').value = post.tiempoRetiroMin || 0;
-        if (document.getElementById('inpTiempoRetiroHoras')) document.getElementById('inpTiempoRetiroHoras').value = post.tiempoRetiroHoras || 0;
+        if (document.getElementById('inpHorasFallaMin')) document.getElementById('inpHorasFallaMin').value = post.horasFallaMin || 0;
+        if (document.getElementById('inpHorasReintubacionMin')) document.getElementById('inpHorasReintubacionMin').value = post.horasReintubacionMin || 0;
         if (document.getElementById('selTipoSoporte')) document.getElementById('selTipoSoporte').value = post.tipoSoporte || 'Atmosférica';
         if (document.getElementById('selDispositivoAtmos')) document.getElementById('selDispositivoAtmos').value = post.dispositivoAtmos || 'Puntas Nasales Simples';
         if (document.getElementById('selDispositivoPosit')) document.getElementById('selDispositivoPosit').value = post.dispositivoPosit || 'CPAP';
+        if (document.getElementById('inpFlowCNAF')) document.getElementById('inpFlowCNAF').value = post.flowExtub || 30;
         if (document.getElementById('inpFiO2Atmos')) document.getElementById('inpFiO2Atmos').value = post.fiO2Extubacion || 21;
         if (document.getElementById('inpPsExtub')) document.getElementById('inpPsExtub').value = post.psExtubacion || 0;
         if (document.getElementById('inpPEEPExtub')) document.getElementById('inpPEEPExtub').value = post.peepExtubacion || 5;
         if (document.getElementById('inpFiO2Extub')) document.getElementById('inpFiO2Extub').value = post.fiO2Extubacion || 30;
         if (document.getElementById('chkFalla')) document.getElementById('chkFalla').checked = post.falla || false;
-        if (document.getElementById('inpHorasFalla')) document.getElementById('inpHorasFalla').value = post.horasFalla || 0;
+        if (document.getElementById('inpHorasFallaHHMM')) document.getElementById('inpHorasFallaHHMM').value = post.horasFallaHHMM || "00:00";
         if (document.getElementById('inpRazonFalla')) document.getElementById('inpRazonFalla').value = post.razonFalla || '';
-        if (document.getElementById('inpHorasReintubacion')) document.getElementById('inpHorasReintubacion').value = post.horasReintubacion || 0;
+        if (document.getElementById('inpHorasReintubacionHHMM')) document.getElementById('inpHorasReintubacionHHMM').value = post.horasReintubacionHHMM || "00:00";
 
         document.getElementById('panelSoporteAtmos').classList.toggle('hidden', post.tipoSoporte !== 'Atmosférica');
         document.getElementById('panelSoportePosit').classList.toggle('hidden', post.tipoSoporte !== 'Positiva');
+        document.getElementById('wrapperFlowCNAF').classList.toggle('hidden', post.dispositivoAtmos !== 'Cánulas de Alto Flujo');
         document.getElementById('panelFallaDetails').classList.toggle('hidden', !post.falla);
       }
     };
@@ -1959,8 +2033,7 @@
       for (let t = 0; t <= maxTime; t += interval) {
         rows.push({
           time: t, pPico: 12, fiO2: 21, rResp: 12, vTesp: 400,
-          pOcc: 0, p01: "0.0", pam: 85, fc: 75, spO2: 98,
-          mitr: "0.0", fI: "=1", isTouched: false
+          pOcc: 0, p01: "0.0", pam: 85, fc: 75, spO2: 98, isTouched: false
         });
       }
       AppState.transSBT.rows = rows;
@@ -2003,6 +2076,8 @@
   
     AppEngine.toggleVasop = function(isCheck) {
       AppState.preSBT.vasop = isCheck;
+      ScalesEngine.recalculateAll();
+      DOMWriter.renderPreSBT();
       AppEngine.saveState();
     };
 
@@ -2029,7 +2104,7 @@
     };
 
     /* ==========================================================================
-       8. MOTOR EXPORTADOR A FORMATO .CSV HORIZONTAL Y DESGLOSADO CON PASO 4
+       8. MOTOR EXPORTADOR A FORMATO .CSV COMPLETO Y DESGLOSADO (EXPORTER)
        ========================================================================== */
     const Exporter = {
       exportCSV() {
@@ -2040,32 +2115,33 @@
 
         let csv = "";
 
-        // --- FILA HORIZONTAL ÚNICA PARA APILADO EN GOOGLE SHEETS (PASOS 1, 2 Y 4) ---
+        // --- FILA HORIZONTAL ÚNICA (PASOS 1, 2 Y 4) ---
         csv += `Fecha_SBT,Folio,Nombre,Hosp,Exp,Fecha_Hosp,D_Hosp,Fecha_IOT,D_VM,Fecha_TQT,D_TQT,Dx,Comorb,IOT_Reason,Edad,Sexo,Talla,Peso,IMC,PBW,TET,TQT,D_Seda,D_BNM,Subgrupo,` +
                `Dx_Act,HD,Vasop,Esp,Ps_Basal,PEEP_Basal,Ppico_Basal,FiO2_Basal,RResp_Basal,VTesp_Basal,VM_Basal,Pocc_Basal,Pmus_Basal,Cdyn_Basal,LTCdyn_Basal,P01_Basal,NIF_Basal,RSBI_Basal,PAM_Basal,FC_Basal,SpO2_Basal,` +
-               `pH,PaO2,SvcO2,Hb,Htc,Temp,SaFi_Basal,PaFi_Basal,` +
+               `pH,PaO2,SvcO2,Htc,Temp,SaFi_Basal,PaFi_Basal,` +
                `FOUR_Total,FOUR_O,FOUR_M,FOUR_B,FOUR_R,` +
                `GCS_Total,GCS_O,GCS_V,GCS_M,` +
                `MRC_Total,` +
                `SOFA2_Total,SOFA2_Plt,SOFA2_BilT,SOFA2_CVSupp,SOFA2_Ren,` +
-               `ExPreS_Total,ExPreS_Htc,ExPreS_Cr,ExPreS_Neuro,ExPreS_Prob,` +
+               `ExPreS_Total,ExPreS_RSBI,ExPreS_Cdyn,ExPreS_DVM,ExPreS_GCS,ExPreS_MRC,ExPreS_Htc,ExPreS_Cr,ExPreS_Neuro,ExPreS_Prob,` +
                `Visage_Total,Visage_Edad,Visage_Ocular,Visage_Deglucio,Visage_GCS,Visage_Prob,` +
-               `Fecha_Extubacion,Tiempo_Retiro_Min,Tiempo_Retiro_Horas,Tipo_Soporte_Extub,Dispositivo_Extub,Ps_Extub,PEEP_Extub,FiO2_Extub,Falla_Extub,Horas_Falla,Razon_Falla,Horas_Reintubacion\n`;
+               `Fecha_Extubacion,Tiempo_Retiro_Min,Tiempo_Retiro_Horas,Tipo_Soporte_Extub,Dispositivo_Extub,Flow_Extub_Lmin,Ps_Extub,PEEP_Extub,FiO2_Extub,Falla_Extub,Horas_Falla,Razon_Falla,Horas_Reintubacion\n`;
 
-        const f = pre.four || { total: "", o: "", m: "", b: "", r: "" };
-        const g = pre.gcs || { total: "", o: "", v: "", m: "" };
-        const mrcTot = pre.mrc ? pre.mrc.total : "";
+        const f = pre.four || { total: "N/A", o: "N/A", m: "N/A", b: "N/A", r: "N/A" };
+        const g = pre.gcs || { total: "N/A", o: "N/A", v: "N/A", m: "N/A" };
+        const mrcTot = pre.mrc ? pre.mrc.total : "N/A";
         
-        const sofaTot = pre.sofa2 !== null && pre.sofa2 !== undefined ? pre.sofa2 : "";
-        const sofaSub = pre.sofa2Scores || { plt: "", bil: "", cv: "", ren: "" };
+        const sofaTot = (pre.sofa2 !== null && pre.sofa2 !== undefined) ? pre.sofa2 : "N/A";
+        const sofaSub = pre.sofa2Scores || { plt: "N/A", bil: "N/A", cv: "N/A", ren: "N/A" };
 
-        const exTot = pre.expres ? pre.expres.total : "";
-        const exProb = pre.expres ? pre.expres.prob : "";
-        const exSub = pre.expresScores || { htc: "", cr: "", neuro: "" };
+        const exTot = pre.expres ? pre.expres.total : "N/A";
+        const exProb = pre.expres ? pre.expres.prob : "N/A";
+        const exSub = pre.expresScores || { rsbi: "N/A", cdyn: "N/A", dvm: "N/A", gcs: "N/A", mrc: "N/A", htc: "N/A", cr: "N/A", neuro: "N/A" };
 
-        const visTot = pre.visage ? pre.visage.total : "";
-        const visProb = pre.visage ? pre.visage.prob : "";
-        const visSub = pre.visageScores || { edad: "", ocular: "", deglucio: "", gcs: "" };
+        const isVisActive = pre.expresScores && pre.expresScores.neuro === 0;
+        const visTot = (isVisActive && pre.visage) ? pre.visage.total : "N/A";
+        const visProb = (isVisActive && pre.visage) ? pre.visage.prob : "N/A";
+        const visSub = (isVisActive && pre.visageScores) ? pre.visageScores : { edad: "N/A", ocular: "N/A", deglucio: "N/A", gcs: "N/A" };
 
         const bVm = Calculators.calcVM(pre.vTesp, pre.rResp);
         const bPmus = Calculators.calcPmus(pre.pOcc);
@@ -2073,22 +2149,49 @@
         const bLtcdyn = Calculators.calcLTCdyn(pre.rResp, pre.pPico, pre.peepBasal);
         const bRsbi = Calculators.calcRSBI(pre.rResp, pre.vTesp);
 
-        const dispositivoFinal = post.tipoSoporte === 'Atmosférica' ? post.dispositivoAtmos : post.dispositivoPosit;
+        let dispFinal = "N/A";
+        let flowFinal = "N/A";
+        let psExtFinal = "N/A";
+        let peepExtFinal = "N/A";
+        let fiO2ExtFinal = "N/A";
+
+        if (post.tipoSoporte === 'Atmosférica') {
+          dispFinal = post.dispositivoAtmos || "N/A";
+          fiO2ExtFinal = post.fiO2Extubacion || 21;
+          if (dispFinal === 'Cánulas de Alto Flujo') {
+            flowFinal = post.flowExtub || 30;
+          }
+        } else if (post.tipoSoporte === 'Positiva') {
+          dispFinal = post.dispositivoPosit || "CPAP";
+          psExtFinal = post.psExtubacion !== undefined ? post.psExtubacion : 0;
+          peepExtFinal = post.peepExtubacion !== undefined ? post.peepExtubacion : 5;
+          fiO2ExtFinal = post.fiO2Extubacion || 30;
+        }
+
+        let hFalla = "N/A";
+        let rFalla = "N/A";
+        let hReint = "N/A";
+
+        if (post.falla) {
+          hFalla = post.horasFalla !== undefined ? post.horasFalla : 0;
+          rFalla = post.razonFalla || "N/A";
+          hReint = post.horasReintubacion !== undefined ? post.horasReintubacion : 0;
+        }
 
         csv += `"${p.fechaSBT}","${p.folio}","${p.nombre}","${p.hosp}","${p.exp}","${p.fechaHosp}","${p.dHosp}","${p.fechaIOT}","${p.dVm}","${p.fechaTQT}","${p.dTqt}","${p.dx}","${p.comorb}","${p.iotReason}","${p.edad}","${p.sexo}","${p.talla}","${p.peso}","${Calculators.calcIMC(p.peso,p.talla)}","${Calculators.calcPBW(p.talla,p.sexo)}","${p.tet}","${p.tqt}","${p.dSeda}","${p.dBnm}","${p.subgrupo}",` +
                `"${pre.dxAct?'SI':'NO'}","${pre.hd?'SI':'NO'}","${pre.vasop?'SI':'NO'}","${pre.esp?'SI':'NO'}","${pre.psBasal}","${pre.peepBasal}","${pre.pPico}","${pre.fiO2}","${pre.rResp}","${pre.vTesp}","${bVm}","${pre.pOcc}","${bPmus}","${bCdyn}","${bLtcdyn}","${pre.p01}","${pre.nif}","${bRsbi}","${pre.pam}","${pre.fc}","${pre.spO2}",` +
-               `"${pre.pH}","${pre.paO2||''}","${pre.svcO2}","${pre.hb}","${pre.htc}","${pre.temp}","${pre.saFi||''}","${pre.paFi||''}",` +
+               `"${pre.pH}","${pre.paO2||'N/A'}","${pre.svcO2}","${pre.htc}","${pre.temp}","${pre.saFi||'N/A'}","${pre.paFi||'N/A'}",` +
                `"${f.total}","${f.o}","${f.m}","${f.b}","${f.r}",` +
                `"${g.total}","${g.o}","${g.v}","${g.m}",` +
                `"${mrcTot}",` +
                `"${sofaTot}","${sofaSub.plt}","${sofaSub.bil}","${sofaSub.cv}","${sofaSub.ren}",` +
-               `"${exTot}","${exSub.htc}","${exSub.cr}","${exSub.neuro}","${exProb}",` +
+               `"${exTot}","${exSub.rsbi}","${exSub.cdyn}","${exSub.dvm}","${exSub.gcs}","${exSub.mrc}","${exSub.htc}","${exSub.cr}","${exSub.neuro}","${exProb}",` +
                `"${visTot}","${visSub.edad}","${visSub.ocular}","${visSub.deglucio}","${visSub.gcs}","${visProb}",` +
-               `"${post.fechaExtubacion}","${post.tiempoRetiroMin}","${post.tiempoRetiroHoras}","${post.tipoSoporte}","${dispositivoFinal}","${post.psExtubacion}","${post.peepExtubacion}","${post.fiO2Extubacion}","${post.falla?'SI':'NO'}","${post.horasFalla}","${post.razonFalla}","${post.horasReintubacion}"\n\n`;
+               `"${post.fechaExtubacion}","${post.tiempoRetiroMin}","${post.tiempoRetiroHoras}","${post.tipoSoporte}","${dispFinal}","${flowFinal}","${psExtFinal}","${peepExtFinal}","${fiO2ExtFinal}","${post.falla?'SI':'NO'}","${hFalla}","${rFalla}","${hReint}"\n\n`;
 
         // --- TABLA VERTICAL INDIVIDUAL PASO 3 (TRANS-SBT TENDENCIAS) ---
         csv += `[MONITOREO TRANS-SBT TENDENCIA INDIVIDUAL]\n`;
-        csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,F/I,P0.1,RSBI,PAM,FC,SpO2,Mitr\n`;
+        csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,P0.1,RSBI,PAM,FC,SpO2\n`;
 
         trans.rows.forEach(r => {
           const vm = Calculators.calcVM(r.vTesp, r.rResp);
@@ -2097,7 +2200,7 @@
           const ltcdyn = Calculators.calcLTCdyn(r.rResp, r.pPico, trans.peepStatic);
           const rsbi = Calculators.calcRSBI(r.rResp, r.vTesp);
 
-          csv += `"${r.time} min","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.fI}","${r.p01}","${rsbi}","${r.pam}","${r.fc}","${r.spO2}","${r.mitr||'N/A'}"\n`;
+          csv += `"${r.time} min","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.p01}","${rsbi}","${r.pam}","${r.fc}","${r.spO2}"\n`;
         });
 
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -2141,6 +2244,7 @@
       }
 
       AppEngine.updateFolio();
+      ScalesEngine.recalculateAll();
       DOMWriter.renderAll();
     };
   </script>
