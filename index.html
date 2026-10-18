@@ -2190,7 +2190,7 @@
                `"${post.fechaExtubacion}","${post.tiempoRetiroMin}","${post.tiempoRetiroHoras}","${post.tipoSoporte}","${dispFinal}","${flowFinal}","${psExtFinal}","${peepExtFinal}","${fiO2ExtFinal}","${post.falla?'SI':'NO'}","${hFalla}","${rFalla}","${hReint}"\n\n`;
 
         // --- TABLA VERTICAL INDIVIDUAL PASO 3 (TRANS-SBT TENDENCIAS) ---
-        csv += `[MONITOREO TRANS-SBT TENDENCIA INDIVIDUAL]\n`;
+        csv += `[TENDENCIA]\n`;
         csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,P0.1,RSBI,PAM,FC,SpO2\n`;
 
         trans.rows.forEach(r => {
