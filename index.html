@@ -2190,8 +2190,8 @@
                `"${post.fechaExtubacion}","${post.tiempoRetiroMin}","${post.tiempoRetiroHoras}","${post.tipoSoporte}","${dispFinal}","${flowFinal}","${psExtFinal}","${peepExtFinal}","${fiO2ExtFinal}","${post.falla?'SI':'NO'}","${hFalla}","${rFalla}","${hReint}"\n\n`;
 
         // --- TABLA VERTICAL INDIVIDUAL PASO 3 (TRANS-SBT TENDENCIAS) ---
-        csv += `[TENDENCIA]\n`;
-        csv += `Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,P0.1,RSBI,PAM,FC,SpO2\n`;
+        csv += `,,[TENDENCIA]\n`;
+        csv += `,,Tiempo,Ps,PEEP,Ppico,FiO2,RResp,VTesp,VM,Pocc,Pmus,Cdyn,LTCdyn-MP,P0.1,RSBI,PAM,FC,SpO2\n`;
 
         trans.rows.forEach(r => {
           const vm = Calculators.calcVM(r.vTesp, r.rResp);
@@ -2200,7 +2200,7 @@
           const ltcdyn = Calculators.calcLTCdyn(r.rResp, r.pPico, trans.peepStatic);
           const rsbi = Calculators.calcRSBI(r.rResp, r.vTesp);
 
-          csv += `"${r.time} min","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.p01}","${rsbi}","${r.pam}","${r.fc}","${r.spO2}"\n`;
+          csv += `",,${r.time} min","${trans.psStatic}","${trans.peepStatic}","${r.pPico}","${r.fiO2}","${r.rResp}","${r.vTesp}","${vm}","${r.pOcc}","${pmus}","${cdyn}","${ltcdyn}","${r.p01}","${rsbi}","${r.pam}","${r.fc}","${r.spO2}"\n`;
         });
 
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
